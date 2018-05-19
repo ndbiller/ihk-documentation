@@ -1,0 +1,35 @@
+#######################
+# files to be ignored #
+#######################
+
+# OS generated files #
+######################
+
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Temporary files #
+###################
+
+*~
+
+# editor generated files #
+##########################
+
+#*.pdf
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.synctex.gz
+*.log
+*.run.xml
+*.toc
+*-blx.bib
+*.bib.bak
+*.ps
+*.tdo
+*.tof
+*.out
