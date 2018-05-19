@@ -1,0 +1,45 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Einleitung}
+\label{sec:Einleitung}
+% TODO: Zitat finden, in dem es um den Wert der eigenständigen Projektarbeit geht, und dann hier einfügen.
+
+\subsection{Projektumfeld} 
+\label{sec:Projektumfeld}
+    % Kurze Vorstellung des Ausbildungsbetriebs (Geschäftsfeld, Mitarbeiterzahl \usw)
+\paragraph*{Unternehmen: } "Das OSZ IMT  in der Haarlemer Straße in Berlin-Britz im Bezirk Neukölln ist eines von 36 Oberstufenzentren in Berlin. Es vereint das Berufliche Gymnasium, die Berufsoberschule, die Fachoberschule, die Berufsfachschule, die Fachschule und die Berufsschule. (\dots)
+[An ihm] arbeiten etwa 160 Lehrkräfte und nichtpädagogisches Personal in Laboren, Werkstätten, Lernbüros und allgemeinen Unterrichtsräumen. (\dots)
+[Es] hat rund 3000 Schüler (\dots) [und] ist die größte Schule Berlins für Informationstechnik und Deutschlands größte Schule für Medizintechnik."\footnote{Porträt des OSZ IMT, \cite{oszimtDe} }
+Wir besuchen dort seit 2 \bzw 1.5 Jahren den Unterricht der Klasse \ac{FA54}.
+% Wer ist Auftraggeber/Kunde des Projekts?
+\paragraph*{Auftraggeber: } Als angehende Fachinformatiker für Anwendungsentwicklung am \ac{OSZ IMT} sollen wir nun im Rahmen des Faches \ac{P/LZ} ein auf mittelständige Unternehmen anwendbares \ac{IT}-Sicherheitskonzept entwickeln. Dazu werden wir im Verlauf des Projektunterrichtes eine \ac{DMZ} unter Verwendung des zuvor in \ac{ITS} erlernten Wissens über Netzwerktechnik einrichten.  Gleichzeitig erarbeiten wir uns Anhand eines Online-Kurses der Cisco-Networking-Academy die für das Projekt benötigten Grundkenntnisse im Umgang mit Linux.\\
+Verantwortlicher Auftraggeber und unser Ansprechpartner für dieses Projekt ist \textbf{Herr Ralf Henze}, Netzwerktechniker und Lehrer am \ac{OSZ IMT} in den Unterrichtsfächern \ac{ITS} und \ac{P/LZ}.
+
+\subsection{Projektziel} 
+\label{sec:Projektziel}
+% Worum geht es eigentlich?
+\paragraph*{Projekthintergrund: } Neben dem offensichtlichen Ziel dieses Projektes, ein \ac{DMZ}-Netzwerk unter Linux einzurichten, will es uns als Teil des Berufsschulunterrichtes natürlich vor allem etwas beibringen. So ist die eigentliche Projektarbeit durchzogen von unterschwelligem Langzeitnutzen für unsere berufliche Entwicklung. Das Wissen, wie und wo man jederzeit Befehle nachschlagen kann, die beneidenswerten Möglichkeiten mit grep, pipes und kleinen Tools wie xargs erstaunlich komplizierte Probleme lösen zu können. Auch die bewusst schon fast aufs Niveau der \ac{IHK} angehobenen Anforderungen an die Projektdokumentation und das Nahelegen, für deren Erstellung mit einer Sprache wie \LaTeX{} zu arbeiten, anstelle dies mit gängigen Office Paketen zu tun, waren eine gute Vorbereitung und hervorragende Übung. So konnte Gelerntes durch praktisches Anwenden gefestigt und Neues sinnvoll ausprobiert werden. 
+% Was soll erreicht werden?
+\paragraph*{Ziel des Projekts: } Die eigentliche Kernaufgabe des Projektes ist die Planung und praktische Umsetzung eines grundlegenden \ac{IT}-Sicherheitskonzeptes mit Hilfe eines \ac{DMZ}-Netzwerkes und dessen Absicherung durch das Setzen \bzw Löschen von Firewall-Regeln über ein Shell-Script. Die demilitarisierte Zone soll zwischen den Windows-Clients des Kunden im internen Netz und den potentiell schädlichen Anfragen der restlichen Welt aus dem externen Netzwerk liegen. Hier steht auch der Windows-Webserver des Kunden, welcher sowohl von Innen (zur Wartung) wie auch von Außen (für Besucher) erreichbar sein muss. Zwei virtuelle Linuxmaschinen sollen als Router zwischen den Netzen konfiguriert werden, wobei der Äußere sowohl \ac{NAT} als auch die Funktion der Firewall übernehmen soll. Planung und Umsetzung sollen umfassend Dokumentiert werden. Jedes Gruppenmitglied soll ein Kompetenzprtfolio führen, in dem er seine Kenntnisse, Gelerntes und Probleme vor, während und nach den Aufgaben der Projektarbeit sammelt und kritisch analysiert.
+
+\subsection{Projektbegründung} 
+\label{sec:Projektbegruendung}
+% Warum ist das Projekt sinnvoll (\zB Kosten- oder Zeitersparnis, weniger Fehler)?
+\paragraph*{Nutzen des Projekts: } Neben dem bereits mehrfach erwähnten Lerneffekt für uns als Schüler, sowohl in den Grundlagen der \ac{IT}-Sicherheit, des Arbeitens auf dem Linux-Filesystem mit Hilfe der \ac{CLI}, wie auch der Wiederholung der Befehle zur Konfiguration von Netzwerken und Schnittstellen in einer neuen leicht anderen Syntax, liegt der Projektnutzen wohl vor Allem auf dem Verstehen der Arbeitsweise von Access-Control-Listen, der Bedeutung der drei Chains sowie eines besseren Einblicks in die Welt der Linux-Distributionen, deren Stärken und Schwächen sowie deren Konfiguration. Und da das Projekt den Auftraggeber faktisch nichts kostet, uns aber fachlich weiter bringt, ist dessen Durchführung für beide Seiten ein Win-Win-Geschäft.
+% Was ist die Motivation hinter dem Projekt?
+\paragraph*{Motivation: } Unser Auftraggeber ist daran interessiert, ein fertiges, funktionierendes System zu erhalten, welches seine Wünsche und Anforderungen erfüllt, aber er und auch wir können uns selbst an greifbaren Indikatoren unsere bisher erworbene Fachkompetenz bewerten. Wir stellen uns somit einer solchen Aufgabe, um etwas neues zu lernen, etwas zu wiederholen und uns zu verbessern. Oder einfach, weil wir es können. Manchmal auch, um uns auf eine Zertifizierung vorzubereiten.
+
+\subsection{Projektschnittstellen} 
+\label{sec:Projektschnittstellen}
+% Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+Technisch gesehen interagieren in unserem Projekt zwei oder mehrere Windows-Rechner, welche über das Labornetzwerk des Raumes 3.1.01 verbunden sind. Auf beiden läuft jeweils eine Linux Debian Distribution in einer virtuellen Umgebung durch den VMWare Player. Die Schnittstellen der virtuellen Linuxdistributionen wiederum sind über den Bridged Modus in den Netzwerkeinstellungen des VMWare Players mit einer der physikalischen Netzwerkschnittstelle des Host-\ac{PC}s verbunden. Über das Labornetz kann Verbindung zu den Rechnern der anderen Gruppen aufgenommen werden.
+% Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
+Die Unterrichtszeit für das Projekt, sowie die Infrastruktur (Pro Gruppe 2 Rechner + benötigte Peripherie, 2 virtuelle Maschinen und alle sonst benötigten Ressourcen, Zugang zum Internet und ins Labornetz) und alles weitere wird uns im Rahmen des \ac{P/LZ}-Unterrichtes zur Verfügung gestellt.
+% Wer sind die Benutzer der Anwendung?
+Dank der theoretischen Natur des Projektes sind die einzigen Benutzer unseres Projektes wir, evtl. unsere Mitschüler während des Erfahrungsaustausches untereinander, sowie unser Auftraggeber, Herr Henze, der sich immer wieder über den aktuellen Stand informiert und auch die finale Abnahme des Projektes übernimmt. 
+% Wem muss das Ergebnis präsentiert werden?
+Zur finalen Abnahme durch den Kunden sollen sowohl die Funktionalität der Firewall-Regeln nachweislich testbar sein, als auch die Projektdokumentation inkl. einer Kopie des verwendeten Firewall-Scriptes, den tabellarisch erfassten Testresultaten sowie je eines Kompetenzportfolios pro Gruppenmitglied zur Abgabe vorliegen.
+
+\subsection{Projektabgrenzung} 
+\label{sec:Projektabgrenzung}
+
+\paragraph*{Was dieses Projekt nicht bietet: } Dieses Projekt will auf keinen Fall den Anspruch erheben, durch die verwendeten Techniken ein Netzwerk oder System perfekt und allumfassend vor unbefugtem Eindringen schützen zu können. Es vermittelt nur Einblicke in die Grundlagen der Netzwerktechnik und \ac{IT}-Sicherheit. Ein perfektes und vor allen schädlichen Einflüssen geschütztes System kann es nicht geben. Weiterführende Informationen zur Verbesserung der Systemsicherheit können aber der im Quellverzeichnis angegebenen Literatur entnommen werden.

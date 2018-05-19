@@ -1,0 +1,42 @@
+\subsection{Lastenheft}
+\label{app:Lastenheft}
+Es folgt unser Lastenheft mit Fokus auf den Anforderungen:
+
+Die Umsetzung muss folgende Anforderungen erfüllen: 
+\begin{enumerate}[itemsep=0em,partopsep=0em,parsep=0em,topsep=0em]
+\item DMZ
+	\begin{enumerate}
+	\item Die DMZ soll aus zwei virtuellen, zu Routern konfigurierten Linux-Distributionen bestehen, welch die Netze INSIDE, OUTSIDE und das DMZ-Netz miteinander verbinden. 
+	\item Die Router sollen entsprechend des Netzplanes eingerichtet und konfiguriert werden.
+	\item Die DMZ soll Zugriffe auf den Webserver erlauben, aber Zugriffe auf das INSIDE-Netz verhindern. Hierzu soll auf dem Outside-Router NAT, Portforwarding und eine Firewall laufen.
+    \item Die Router sollen nur vom Client-Rechner her fernadministrierbar sein.
+	\end{enumerate}
+\item Client-Rechner
+\begin{enumerate}
+    \item Der Client-Rechner im INSIDE-Netz nutzt das Betriebssystem Windows.
+    \item Der Webserver soll eine Webseite mit dem aktuellen Stand der Gruppe anzeigen.    
+\end{enumerate}
+\item Webserver
+\begin{enumerate}
+    \item Der Webserver nutzt das Betriebssystem Windows. Er wird über das Tool Mini-Webserver vom Auftraggeber bereitgestellt.
+    \item Der Webserver im DMZ-Netz muss vom OUTSIDE-Netz über Port 80 erreichbar sein. Hierzu soll auf dem Outside-Router NAT und Port-Forwarding eingerichtet werden.
+    \item Der Webserver soll eine Webseite mit dem aktuellen Stand der Gruppe anzeigen.    
+\end{enumerate}
+\item Firewall
+\begin{enumerate}
+    \item Die Firewall soll den Webserver in der DMZ über Port 80 erreichbar sein lassen.
+    \item Die Firewall soll SSH nur vom Admin-PC zulassen.
+    \item Die Firewall soll ICMP zulassen.
+    \item Die Firewall soll DNS zulassen.
+    \item Die Firewall soll RDP zulassen.
+    \item Die Firewall soll per Script an- und ausschaltbar sein. Hierzu muss an diversen Stellen per Script die Linux-Systemkonfiguration verändert werden
+\end{enumerate}
+\item Sonstige Anforderungen
+	\begin{enumerate}
+	\item Das Projekt soll unter Berücksichtigung der von der IHK ausgegebenen Richtlinien für eine Projektdokumentation dokumentiert werden.
+    \item Es soll ein logischer Netzplan in Papierform erstellt und der Dokumentation angefügt werden.
+	\item Pro Person soll ein ausführliches Kompetenzportfolio erstellt werden, welches einen kritischen Überblick über unsere individuellen Kompetenzstände vor, während und nach dem Projekt liefert. Diese sollen der Dokumentation angehängt werden.
+	\item Die Funktionalität der Firewall soll getestet und die Ergebnisse in zwei Testprotokollen festgehalten werden. Diese sind der Dokumentation anzuhängen.
+	\end{enumerate}
+\end{enumerate}
+
