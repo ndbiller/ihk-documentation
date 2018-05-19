@@ -1,0 +1,26 @@
+Firewall
+File:/root/bin/firewall.sh
+
+Path erweitern:
+File: /root/bash.rc
+Edit: PATH=$PATH:~/bin
+
+NTP
+ntpapt-get install ntp
+File: /etc/ntp.conf
+Edit: server 192.168.200.1 iburst
+Service: ntp	(service ntp status)
+Check: ntpd -p
+http://www.debianadmin.com/ntp-server-and-client-configuration-in-debian.html
+
+Windows: w32tm /stripchart /computer:192.168.200.1
+https://superuser.com/questions/451018/how-can-i-query-an-ntp-server-under-windows
+
+Startup-File
+File: /etc/rc.local
+chmod + x rc.local
+Edit: /root/bin/firewall.sh start
+
+Log
+/var/log/Firewall/firewallconfig
+

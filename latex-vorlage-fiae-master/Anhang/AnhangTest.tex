@@ -1,0 +1,286 @@
+\begin{table}
+    \tabelleAnhang{Systeminformation}{tab:Systeminformation}{Systeminformation.tex}
+    \caption{Hardwaredetails des Testsystems}
+    \label{tab:tabletestsystem}
+\end{table}
+
+\subsection{Aufbau der Testumgebung}
+\label{app:testaufbau}
+Die zur Umsetzung dieses Kapitels benötigten Informationen entstammen unter anderem den hilfreichen Artikeln folgender Webseiten: \cite{networkdriverhacking}
+
+\subsubsection{Implementierung der Virtuellen Maschinen}
+Im Server-Manager fügen wir über \textit{Verwalten > Rollen und Features hinzufügen} den Hyper-V-Manager hinzu indem wir dem Assistenten folgen. Dieser gestattet es virtuelle Maschinen und Netzwerke zu installieren.
+Als nächstes wird eine neue virtuelle Linux (Debian 7.1)  Maschine (Generation 1) aus einem Image erstellt. Dies geschieht mit Hilfe eines Assistenten. Sie bekommt einen virtuellen Prozessor und 1 \ac{GB} Arbeitsspeicher. Des weiteren wird bei der Installation eine 5 \ac{GB} große Festplatte für die Maschine erstellt und ihr zugewiesen. Als virtuellen Switch weisen wir ihr vorläufig den Netzwerkadapter des Hosts zu. Somit besitzt unsere Linux-\ac{VM} Internet. Um sie zu installieren, startet man nun die Maschine und verbindet sich zu ihr. Danach folgt man wie gewohnt den Installationsschritten wie bei einer physischen Maschine. Danach installieren wir den \ac{NTP}-Service. Ist die Grundkonfiguration fertig, wird die Maschine ausgeschaltet.
+Die Installation der Windows 7 \ac{VM} erfolgt analog zu die der Linux \ac{VM}. Wir vergeben jedoch 4 \ac{GB} \ac{RAM} und erstellen eine mindestens 30 \ac{GB} große virtuelle Festplatte. Nach der Installation wird die Firewall wie in \nameref{sec:Implementierungsphase} eingerichtet. Zusätzlich werden noch nützliche Software wie putty oder winscp heruntergeladen.
+Nach der Grundkonfiguration der beiden \ac{VM}s können diese nun dupliziert werden. Dazu muss man die virtuelle Maschine erst exportieren, um sie danach wieder zu importieren. Beim Import sollte man darauf achten, dass man \textit{eine neue eindeutige \ac{ID} } erstellt. Nachdem starten der importierten Maschine wird als erstes der Hostname geändert, um sie von der Originalen zu unterscheiden und um \ac{DNS}-Konflikte zu vermeiden.
+
+\subsubsection{Implementierung des virtuellen Netzwerkes}
+Virtuelle Netzwerke werden über das Hinzufügen virtueller Switche an den Netzwerkadaptern der virtuellen Maschine erstellt. Auf diesen lassen sich auch \ac{VLAN}s einrichten.
+Die Installation eines solchen Switch wird ebenfalls vom Hyper-V-Manager mit einem Assistenten bereitgestellt. Für Testzwecke werden 2 \textit{private} Switche erstellt, da diese die direkte Kommunikation mit dem Host unterbinden und somit nicht die Router umgangen werden. Diese erhalten den Namen \ac{DMZ}- \bzw \ac{LAN}-Switch. Ein \textit{öffentlicher} Switch ist bereits vorhanden. Mit diesem ist der physische Netzwerkadapter des Hosts verbunden. Diese werden dann den \ac{VM}s entsprechend des \nameref{app:Netzplan}s zugeordnet. Für die Linux-\ac{VM}s, die als Router fungieren, muss \evtl noch ein zweiter Netzwerkadapter hinzugefügt werden. Nun können die Router und Clients (\text{Siehe Bild und Implementierung}) konfiguriert werden.
+
+\subsubsection{Implementierung des \ac{DNS}-Servers}
+Der \ac{DNS}-Server wird ebenfalls über den Server-Manager (unter \textit{Rollen und Features hinzufügen}) installiert. Diesen kann man nun über den \ac{DNS}-Manager verwalten. Es genügt eine \textit{Forward-Lookup}-Zone zu erstellen. Als Zonennamen wählen wir \textit{fritz.box} da bereits das Standard-Gateway darauf verweist. Dies ist die Domäne bzw. das \ac{DNS}-Suffix. Dieses Suffix wird auf den Windows-\ac{VM}s in den \ac{IP}v4-Einstellungen des Netzwerkadapters nachgetragen. Auf den Linux-\ac{VM}s tragen wir dies zusätzlich in die \verb+/etc/resolv.conf+ vor unserem \ac{DNS}-Server ein. \textbf{siehe resolv.conf oder selber schreiben]
+Über den \ac{DNS}-Manager werden im Anschluss noch in der Zone \textit{fritz.box} unsere \ac{VM}s (A-Record) mit Namen und \ac{IP}-Adressen eingetragen. \textbf Siehe \ac{DNS}Manager.png}.
+
+\subsubsection{Testen der Firewall}
+Nachdem das Firewall-Script auf die Router kopiert und die \ac{DNS}-Server angepasst wurden, kann mit den Tests begonnen und die Firewall ggf.\ angepasst werden. Dazu speichern wir den Verlauf der erstellten Regeln als Log-Ausgabe in \verb+/var/log/firewall/firewallConfig+ ab. Die Ergebnisse unserer Tests finden sich als Übersicht in den folgenden Tabellen der Testprotokolle:
+
+
+% Testprotokolle
+\subsubsection{Testprotokolle}
+\label{app:Testprotokolle}
+% Description
+\clearpage
+
+% tables created with: http://www.tablesgenerator.com/latex_tables
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllll}
+            \rowcolor[HTML]{009BA7} 
+            \textbf{Service} & \textbf{Command} & \textbf{Source-IP} & \textbf{Destination-IP} & \textbf{Soll} & \textbf{Ist} \\
+            ICMP & ping & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            ICMP & ping & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 172.16.9.1 & ja & ja \\
+            ICMP & ping & 172.16.9.3 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            ICMP & ping & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 10.0.9.3 & ja & ja \\
+            ICMP & ping & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            ICMP & ping & 10.0.9.3 & 8.8.8.8 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 192.168.200.109 & ja & ja \\
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 10.0.9.2 & 192.168.200.1 & ja & ja \\
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 172.16.9.3 & 192.168.200.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & ntpq -p & 192.168.200.109 & 192.168.200.1 & ja & ja \\
+            RDP & mstsc.exe & 10.0.9.2 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            RDP & mstsc.exe & 10.0.9.3 & 172.16.9.3 & ja & ja \\
+            SSH & putty & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.3 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 172.16.9.3 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            DNS & nslookup 172.16.9.1 & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Inside-Router & 172.16.9.3 & 192.168.200.10 & ja & ja \\
+            DNS & nslookup 10.0.9.1 & 172.16.9.2 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Client-PC & 192.168.200.109 & 192.168.200.10 & ja & ja
+        \end{tabular}%
+    }
+    \caption{Aus - Aus}
+    \label{tab:ausaus}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllll}
+            \rowcolor[HTML]{009BA7} 
+            \textbf{Service} & \textbf{Command} & \textbf{Source-IP} & \textbf{Destination-IP} & \textbf{Soll} & \textbf{Ist} \\
+            ICMP & ping & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 10.0.9.1 & nein & nein \\
+            ICMP & ping & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 172.16.9.1 & nein & nein \\
+            ICMP & ping & 172.16.9.3 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 172.16.9.3 & 172.16.9.2 & nein & nein \\
+            ICMP & ping & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 10.0.9.3 & nein & nein \\
+            ICMP & ping & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            ICMP & ping & 10.0.9.3 & 8.8.8.8 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 192.168.200.109 & nein & nein \\
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 10.0.9.2 & 192.168.200.1 & ja & ja \\
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 172.16.9.3 & 192.168.200.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & ntpq -p & 192.168.200.109 & 192.168.200.1 & ja & ja \\
+            RDP & mstsc.exe & 10.0.9.2 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            RDP & mstsc.exe & 10.0.9.3 & 172.16.9.3 & nein & nein \\
+            SSH & putty & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 10.0.9.3 & 10.0.9.1 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.3 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 172.16.9.3 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 172.16.9.3 & 172.16.9.2 & nein & nein \\
+            DNS & nslookup 172.16.9.1 & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Inside-Router & 172.16.9.3 & 192.168.200.10 & ja & ja \\
+            DNS & nslookup 10.0.9.1 & 172.16.9.2 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Client-PC & 192.168.200.109 & 192.168.200.10 & ja & ja
+        \end{tabular}%
+    }
+    \caption{Aus - An}
+    \label{tab:ausan}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllll}
+            \rowcolor[HTML]{009BA7} 
+            \textbf{Service} & \textbf{Command} & \textbf{Source-IP} & \textbf{Destination-IP} & \textbf{Soll} & \textbf{Ist} \\
+            ICMP & ping & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            ICMP & ping & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 172.16.9.1 & nein & nein \\
+            ICMP & ping & 172.16.9.3 & 172.16.9.1 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            ICMP & ping & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 10.0.9.3 & nein & nein \\
+            ICMP & ping & 192.168.200.10 & 172.16.9.3 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 192.168.200.109 & nein & nein \\
+            ICMP & ping & 10.0.9.3 & 8.8.8.8 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 192.168.200.109 & nein & nein \\
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 10.0.9.2 & 192.168.200.1 & ja & ja \\
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 172.16.9.3 & 192.168.200.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & ntpq -p & 192.168.200.109 & 192.168.200.1 & ja & ja \\
+            RDP & mstsc.exe & 10.0.9.2 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            RDP & mstsc.exe & 10.0.9.3 & 172.16.9.3 & nein & nein \\
+            SSH & putty & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.3 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 172.16.9.3 & 172.16.9.1 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            DNS & nslookup 172.16.9.1 & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Inside-Router & 172.16.9.3 & 192.168.200.10 & ja & ja \\
+            DNS & nslookup 10.0.9.1 & 172.16.9.2 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Client-PC & 192.168.200.109 & 192.168.200.10 & ja & ja
+        \end{tabular}%
+    }
+    \caption{An - Aus}
+    \label{tab:anaus}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{llllll}
+            \rowcolor[HTML]{009BA7} 
+            \textbf{Service} & \textbf{Command} & \textbf{Source-IP} & \textbf{Destination-IP} & \textbf{Soll} & \textbf{Ist} \\
+            ICMP & ping & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            ICMP & ping & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 10.0.9.3 & 172.16.9.1 & nein & nein \\
+            ICMP & ping & 172.16.9.3 & 172.16.9.1 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            ICMP & ping & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 10.0.9.3 & nein & nein \\
+            ICMP & ping & 192.168.200.10 & 172.16.9.3 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            ICMP & ping & 192.168.200.10 & 192.168.200.109 & nein & nein \\
+            ICMP & ping & 10.0.9.3 & 8.8.8.8 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 192.168.200.109 & ja & ja \\
+            HTTP & http://172.16.9.3 & 192.168.200.10 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 192.168.200.109 & nein & nein \\
+            HTTP & http://172.16.9.3 & 10.0.9.3 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 10.0.9.2 & 192.168.200.1 & ja & ja \\
+            NTP & w32tm /stripchart /computer:192.168.200.1 & 172.16.9.3 & 192.168.200.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            NTP & ntpq -p & 192.168.200.109 & 192.168.200.1 & ja & ja \\
+            RDP & mstsc.exe & 10.0.9.2 & 172.16.9.3 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            RDP & mstsc.exe & 10.0.9.3 & 172.16.9.3 & nein & nein \\
+            SSH & putty & 10.0.9.2 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.2 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 10.0.9.3 & 10.0.9.1 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 10.0.9.3 & 172.16.9.1 & ja & ja \\
+            SSH & putty & 172.16.9.3 & 172.16.9.1 & nein & nein \\
+            \rowcolor[HTML]{EFEFEF} 
+            SSH & putty & 172.16.9.3 & 172.16.9.2 & ja & ja \\
+            DNS & nslookup 172.16.9.1 & 10.0.9.3 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Inside-Router & 172.16.9.3 & 192.168.200.10 & ja & ja \\
+            DNS & nslookup 10.0.9.1 & 172.16.9.2 & 192.168.200.10 & ja & ja \\
+            \rowcolor[HTML]{EFEFEF} 
+            DNS & nslookup Client-PC & 192.168.200.109 & 192.168.200.10 & ja & ja
+        \end{tabular}%
+    }
+    \caption{An - An}
+    \label{tab:anan}
+\end{table}
+\clearpage
+
+\subsection{Firewall-Skripte}
+\label{app:Firewall}
+
+\subsubsection{firewall.sh (auf dem Outside-Router)}
+\label{app:Firewall-Outside}
+\lstinputlisting[language=sh]{Listings/outside/firewall.sh}
+
+\subsubsection{firewall.sh (auf dem Inside-Router)}
+\label{app:Firewall-Inside}
+\lstinputlisting[language=sh]{Listings/inside/firewall.sh}

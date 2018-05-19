@@ -1,0 +1,30 @@
+\subsection{Pflichtenheft}
+\label{app:Pflichtenheft}
+
+Unser aus den Anforderungen des Lastenheftes erstelltes Pflichtenheft:
+
+\begin{enumerate}[itemsep=0em,partopsep=0em,parsep=0em,topsep=0em]
+\item Musskriterien % Wikipedia: für das Produkt unabdingbare Leistungen, die in jedem Fall erfüllt werden müssen
+    \begin{enumerate}
+    \item Das DMZ-Netz erhält die Netzmaske 172.16.9.0/24
+    \item Das intere Netz erhält die Netzmaske 10.0.9.0/24
+    \item Die öffentliche Schnittstelle des Outside-Router erhält die IP 192.168.200.109
+    \item Der Outside-Router erhält als Standard-Gateway die IP 192.168.200.1
+    \item Der Outside-Router erhält eine statische Route für das interne und DMZ-Netz
+    \item Der Inside-Router erhält als Standard-Gateway das Interface des Outside-Routers, welches in die DMZ zeigt
+    \item Der Webserver ist über die öffentliche IP des Outside-Routers über HTTP/S von außen erreichbar
+    \item Der Webserver ist über die lokale IP 172.16.9.3 über HTTP/S aus dem internen Netzwerk erreichbar
+    \item Die Router und Windows-Clients bekommen als DNS-Server die IPs 192.168.95.40 und 192.168.95.41
+    \item Die Router und Windows-Clients bekommen als NTP-Server die IP 192.168.200.1
+    \item Die Firewall verhindert unrechtmäßigen Datentransfer zwischen den Netzen und auf den Routern
+    \item Der Admin-PC mit der IP 10.0.9.2 ist berechtigt mittels SSH auf die Router zuzugreifen	
+    \end{enumerate}
+\item Kannkriterien
+    \begin{enumerate}
+    \item Die Firewall lässt sich mit den Optionen "start" und "stop" an- bzw.\ ausschalten
+    \item Die Firewall-Scripts der Router befinden sich im Verzeichnis /root/bin
+    \item Die Veränderung der Firewall-Konfiguration befindet sich jeweils im Verzeichnis /var/log/firewall
+    \item Der Admin-PC mit der IP 10.0.9.2 ist berechtigt mittels RDP auf den Webserver zuzugreifen
+    \end{enumerate}
+\end{enumerate}
+	
