@@ -1,0 +1,73 @@
+# 1 Einleitung
+
+Pläne sind nichts, Planung ist alles.
+Dwight D. Eisenhower, ehemaliger US-Präsident
+
+Kein Plan überlebt die erste Feindberührung.
+Helmuth von Moltke, preußischer Generalfeldmarschall
+
+Denn auch die beste Planung ist wertlos, wenn sie nicht im Fall von widrigen Umständen schnell und einfach auf die neue Situation anpassbar ist. Während der Umsetzung der geplanten Schritte des praktischen Teils meiner Abschlussprüfung wurden mir genau diese Weisheiten immer wieder deutlich vor Augen geführt.
+
+## 1.1 Projektumfeld
+
+### Projektumfeld:
+
+Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. "2013 (. . . ) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (. . . ) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (. . . ) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder überdie eigene Webseite anbieten.
+
+### Auftraggeber:
+
+
+
+## 1.2 Projektziel
+### Projekthintergrund:
+### Ziel des Projekts:
+## 1.3 Projektbegründung
+### Nutzen des Projekts:
+### Motivation:
+## 1.4 Projektschnittstellen
+## 1.5 Projektabgrenzung
+# 2 Projektplanung
+## 2.1 Projektphasen
+## 2.2 Zeitplanung
+## 2.3 Abweichungen vom Projektantrag
+## 2.4 Ressourcenplanung
+## 2.5 Entwicklungsprozess
+# 3 Analysephase
+## 3.1 Ist-Analyse
+## 3.2 Wirtschaftlichkeitsanalyse
+### 3.2.1 „Make or Buy“-Entscheidung
+### 3.2.2 Projektkosten
+### 3.2.3 Amortisationsdauer
+## 3.3 Nutzwertanalyse
+## 3.4 Qualitätsanforderungen
+## 3.5 Lastenheft
+## 3.6 Zwischenstand
+# 4 Entwurfsphase
+## 4.1 Zielplattform
+## 4.2 Netzwerkplan
+## 4.3 Maßnahmen zur Qualitätssicherung
+## 4.4 Pflichtenheft
+## 4.5 Zwischenstand
+# 5 Implementierungsphase
+## 5.1 Implementierung der Virtuellen Maschinen
+## 5.2 Konfiguration der Router
+### 5.2.1 Konfiguration der Interfaces
+### 5.2.2 Konfiguration der statischen Routern
+### 5.2.3 Konfiguration von Network Adress Translation (NAT) und Port-Forwarding
+### 5.2.4 Konfiguration des Domain Name Server (DNS)-Servers
+### 5.2.5 Konfiguration des Zeitserver
+## 5.3 Implementierung der physischen Hosts
+### 5.3.1 Konfiguration der Interfaces
+### 5.3.2 Konfiguration des Webservers
+### 5.3.3 Konfiguration der Windows-Firewall  
+### 5.3.4 Konfiguration des Zeitservers 
+## 5.4 Konfiguration der Firewall
+## 5.5 Zwischenstand
+# 6 Abnahmephase
+## 6.1 Zwischenstand
+# 7 Dokumentation
+## 7.1 Zwischenstand
+# 8 Fazit
+## 8.1 Soll-/Ist-Vergleich
+## 8.2 Lessons Learned
+## 8.3 Ausblick
