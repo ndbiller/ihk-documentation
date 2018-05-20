@@ -69,7 +69,7 @@ Auf dem Host in der \ac{DMZ} wird ein einfacher Webserver, welcher über Port 80
 Um auf den Hosts die Firewall testen und einen \ac{DNS}-Server nutzen zu können muss die Windows-Firewall noch dementsprechend angepasst werden.
 Dazu ist es nötig die Anpassungen für sowohl die ein- als auch ausgehenden Regeln vorzunehmen. 
 Damit wir einen \textit{ping}-Befehl absetzen können, ist es nötig die Regel für die \textit{Datei- und Druckerabfrage} für \ac{ICMP}v4 zu aktivieren.
-Für die Kommunikation zum \ac{DNS}-Server erstellen wir zwei Regeln, je eine für das \ac{TCP}- \bzw das \ac{UPD}-Protokoll. Darin erlauben wir die Kommunikation über die Ports 53 und 853.
+Für die Kommunikation zum \ac{DNS}-Server erstellen wir zwei Regeln, je eine für das \ac{TCP}- \bzw das \ac{UDP}-Protokoll. Darin erlauben wir die Kommunikation über die Ports 53 und 853.
 
 \subsubsection{Konfiguration des Zeitservers}
 \label{subsubsec:KonfigurationWinNTP}
