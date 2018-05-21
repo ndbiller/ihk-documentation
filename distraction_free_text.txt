@@ -29,13 +29,17 @@ Ziel des Projektes ist die Erweiterung des intern zur Angebots- und Vertragserst
 
 % Warum ist das Projekt sinnvoll (z.B. Kosten- oder Zeitersparnis, weniger Fehler)?
 
-
+Mit diesem Projekt soll die bisherige manuelle Erstellung der neuen Kundenaccounts durch die Onboarding-Manager automatisiert werden, was zu einer Zeit- und somit auch Kostenreduzierung im Onboardingprozess führt. Gleichzeitig sollen mögliche Fehlerquellen bei der im bisherigen Prozess hierzu verwendeten doppelten Datenhaltung eliminiert werden.
 
 % Was ist die Motivation hinter dem Projekt?
+
+Hauptmotivation hinter dem Projekt ist somit die Prozessoptimierung der bisherigen Accounterstellung. Nicht zuletzt soll somit auch der Arbeitsaufwand und Streß in der Onboardingabteilung reduziert werden, der bei der Accounterstellung durch ständig wiederkehrende anspruchslose Copy-und-Paste-Tätigkeiten entstehen kann.
 
 ## 1.4 Projektschnittstellen
 
 % Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+
+
 
 % Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
 
