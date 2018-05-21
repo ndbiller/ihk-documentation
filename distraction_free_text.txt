@@ -132,14 +132,16 @@ Um den Onboardingprozess zu optimieren, sollen zum einen die Daten des Übergabe
 ### 3.2.1 „Make or Buy“-Entscheidung
 
 % Gibt es vielleicht schon ein fertiges Produkt, dass alle Anforderungen des Projekts abdeckt?
-
 % Wenn ja, wieso wird das Projekt trotzdem umgesetzt?
+
+Die „Make or Buy“-Entscheidung ist in diesem Fall leicht getroffen. Zum einen existiert bereits eine bestehende Busverbindung zum Datentransfer zwischen unserem in Rails geschriebenem Backend, in welchem das Angebotssystem eingebettet ist, und dem Zielsystem Doctena Pro. Zum anderen kann über kommerziell erhältliche Lösungen zur Angebotserstellung die automatische Accounterstellung nicht realisiert, und so auch der bisherige manuelle Onboardingprozess nicht optimiert werden. 
 
 ### 3.2.2 Projektkosten
 
-% Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (\zB Entwicklung, Einführung/Schulung, Wartung)?
-
+% Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (z.B. Entwicklung, Einführung/Schulung, Wartung)?
 % Stundenlohn (brutto) = 3 × dein Monatslohn (brutto) ÷ 13 ÷ die Anzahl deiner wöchentlichen Arbeitsstunden
+
+
 
 ### 3.2.3 Amortisationsdauer
 
