@@ -95,15 +95,25 @@ Keine.
 % Ggf. sind auch personelle Ressourcen einzuplanen (z.B. unterstützende Mitarbeiter).
 % Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (z.B. PC, Büro).
 
+% TODO: Tabelle Genaue Auflistung erstellen und verlinken. Mit André Kosten besprechen.
 
+Die benötigten Mittel zur Durchführung des Projektes werden vom Auftraggeber Doctena zur verfügung gestellt und eine detaillierte Auflistung der Ressourcen und deren Kosten findet sich im Anhang unter (TODO). Diese werden auch als Grundlage für die im weiteren Verlauf in Kapitel 3 angestellten Berechnungen verwendet.
 
 ## 2.5 Entwicklungsprozess
 
 % Welcher Entwicklungsprozess wird bei der Bearbeitung des Projekts verfolgt (\zB Wasserfall, agiler Prozess)?
 
+Der Projektablauf wurde vom Wasserfallmodell ausgehend in die folgenden Projektphasen unterteilt:
+
+Definition und Projektantrag, Planung, Analyse, Entwurf, Implementierung, Qualitätssicherung und Abnahme, Einführung, Dokumentation
+
+Diese werden sequentiel in dieser Reihenfolge bis zum Abgabetermin abgearbeitet, wobei es zwischenzeitlich immer wieder Zeit für Besprechungsmöglichkeiten mit den am Projekt Beteiligten Stellen zum aktuellen Stand geben wird. Die Entwicklung während der Implementierungsphase wird nach TDD-Prinzipien durchgefürt, wodurch auch die Tests zur Sicherstellung der Einhaltung der vereinbarten Anforderungen aus dem Pflichtenheft teilweise während dieser Phase erstellt werden. Da das Angebotssystem an unsere CI-Pipeline angebunden ist, kann eine erfolgreiche Abnahme und anschließende Einführung erst nach einem bestehen aller Tests der Qualitätssicherung erfolgen. Artefakte für die Dokumentation werden, wenn möglich, während der gesammten Durchführung gesammelt und angelegt.
+
 # 3 Analysephase
 
 % Überblick
+
+
 
 ## 3.1 Ist-Analyse
 
