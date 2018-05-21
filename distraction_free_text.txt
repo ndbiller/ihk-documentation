@@ -61,7 +61,7 @@ Diesen soll nach Abnahme durch den Auftraggeber, vertretten durch den CTO von Do
 
 % Was ist explizit nicht Teil des Projekts (insb. bei Teilprojekten)?
 
-
+Da sich die zubuchbaren Features des Angebots teilweise noch im Entwicklungsstadium befinden, kann deren Setzen über den Bus nicht innerhalb des Projektzeitraumes gewährleistet werden, da sich an deren Funktionalität und Struktur im Zielsystem noch große Teile ändern können. Deswegen wurde die Umsetzung dieser Funktionalität bereits im Projektantrag aus den gestellten Anforderungen ausgeklammert. Auch das Umsetzen der Objekterstellung im Zielsystem kann wegen der zur Zeit hohen Arbeitsauslastung der Entwickler in Luxemburg bei anderen Projekten nicht innerhalb des Projektzeitraumes gewährleistet werden. Dieses Teilprojekt wird voraussichtlich erst zu einem späteren Zeitpunkt realisiert. Aus diesem Grund kann momentan nur die Korrektheit der an die Messaging-Queues auf dem Bus gesendeten Daten gewährleistet werden. Wie diese von Doctena Pro verarbeitet werden, liegt in der Verantwortung der entsprechenden Entwickler vor Ort.
 
 # 2 Projektplanung
 
