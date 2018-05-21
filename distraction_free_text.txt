@@ -1,73 +1,255 @@
 # 1 Einleitung
 
+% Zitat finden, in dem es um den Wert der eigenständigen Projektarbeit geht, und dann hier einfügen.
+
 Pläne sind nichts, Planung ist alles.
 Dwight D. Eisenhower, ehemaliger US-Präsident
 
 Kein Plan überlebt die erste Feindberührung.
 Helmuth von Moltke, preußischer Generalfeldmarschall
 
-Denn auch die beste Planung ist wertlos, wenn sie nicht im Fall von widrigen Umständen schnell und einfach auf die neue Situation anpassbar ist. Während der Umsetzung der geplanten Schritte des praktischen Teils meiner Abschlussprüfung wurden mir genau diese Weisheiten immer wieder deutlich vor Augen geführt.
-
 ## 1.1 Projektumfeld
 
-### Projektumfeld:
+% Kurze Vorstellung des Ausbildungsbetriebs.
 
 Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. "2013 (. . . ) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (. . . ) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (. . . ) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder überdie eigene Webseite anbieten.
 
-### Auftraggeber:
+% Wer ist Auftraggeber/Kunde des Projekts?
 
 
 
 ## 1.2 Projektziel
-### Projekthintergrund:
-### Ziel des Projekts:
+
+% Worum geht es eigentlich?
+
+% Was soll erreicht werden?
+
 ## 1.3 Projektbegründung
-### Nutzen des Projekts:
-### Motivation:
+
+% Warum ist das Projekt sinnvoll (\zB Kosten- oder Zeitersparnis, weniger Fehler)?
+
+% Was ist die Motivation hinter dem Projekt?
+
 ## 1.4 Projektschnittstellen
+
+% Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+
+% Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
+
+% Wer sind die Benutzer der Anwendung?
+
+% Wem muss das Ergebnis präsentiert werden?
+
 ## 1.5 Projektabgrenzung
+
+% Was ist explizit nicht Teil des Projekts (insb. bei Teilprojekten)?
+
 # 2 Projektplanung
+
 ## 2.1 Projektphasen
+
+% In welchem Zeitraum und unter welchen Rahmenbedingungen (\zB Tagesarbeitszeit) findet das Projekt statt?
+
 ## 2.2 Zeitplanung
+
+% Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
+
 ## 2.3 Abweichungen vom Projektantrag
+
+% Sollte es Abweichungen zum Projektantrag geben (\zB Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
+
 ## 2.4 Ressourcenplanung
+
+% Detaillierte Planung der benötigten Ressourcen (Hard-/Software, Räumlichkeiten \usw).
+
+% \Ggfs sind auch personelle Ressourcen einzuplanen (\zB unterstützende Mitarbeiter).
+
+% Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (\zB PC, Büro).
+
 ## 2.5 Entwicklungsprozess
+
+% Welcher Entwicklungsprozess wird bei der Bearbeitung des Projekts verfolgt (\zB Wasserfall, agiler Prozess)?
+
 # 3 Analysephase
+
+% Überblick
+
 ## 3.1 Ist-Analyse
+
+% Wie ist die bisherige Situation (\zB bestehende Programme, Wünsche der Mitarbeiter)?
+
+% Was gilt es zu erstellen/verbessern?
+
 ## 3.2 Wirtschaftlichkeitsanalyse
+
 ### 3.2.1 „Make or Buy“-Entscheidung
+
+% Gibt es vielleicht schon ein fertiges Produkt, dass alle Anforderungen des Projekts abdeckt?
+
+% Wenn ja, wieso wird das Projekt trotzdem umgesetzt?
+
 ### 3.2.2 Projektkosten
+
+% Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (\zB Entwicklung, Einführung/Schulung, Wartung)?
+
+% Stundenlohn (brutto) = 3 × dein Monatslohn (brutto) ÷ 13 ÷ die Anzahl deiner wöchentlichen Arbeitsstunden
+
 ### 3.2.3 Amortisationsdauer
+
+% Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
+
+% Wann hat sich das Projekt amortisiert?
+
 ## 3.3 Nutzwertanalyse
+
+% Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
+
 ## 3.4 Qualitätsanforderungen
+
+% Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
+
 ## 3.5 Lastenheft
+
+% Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
+
+% Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+
 ## 3.6 Zwischenstand
+
+% Tabelle
+
 # 4 Entwurfsphase
+
+% Erklärung
+
 ## 4.1 Zielplattform
-## 4.2 Netzwerkplan
-## 4.3 Maßnahmen zur Qualitätssicherung
+
+% Beschreibung der Kriterien zur Auswahl der Zielplattform (u.a. Programmiersprache, Datenbank, Client/Server, Hardware)
+
+## 4.2 Architekturdesign
+
+% Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC).
+Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
+
+## 4.3 Entwurf der Benutzeroberfläche
+
+% Entscheidung für die gewählte Benutzeroberfläche (z.B. GUI, Webinterface).
+
+% Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
+
+% Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
+
+## 4.4 Datenmodell
+
+% Entwurf/Beschreibung der Datenstrukturen (z.B. ERM und/oder Tabellenmodell, XML-Schemas) mit kurzer Beschreibung der wichtigsten (!) verwendeten Entitäten.
+
+## 4.5 Geschäftslogik
+
+% Modellierung und Beschreibung der wichtigsten (!) Bereiche der Geschäftslogik (z.B. mit Komponenten-, Klassen-, Sequenz-, Datenflussdiagramm, Programmablaufplan, Struktogramm, Ereignisgesteuerte Prozesskette (EPK)).
+
+% Wie wird die erstellte Anwendung in den Arbeitsfluss des Unternehmens
+integriert?
+
+## 4.6 Maßnahmen zur Qualitätssicherung
+
+% Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel 3.4: Qualitätsanforderungen) zu sichern (z.B. automatische Tests, Anwendertests)?
+
+% Ggfs. Definition von Testfällen und deren Durchführung (durch
+Programme/Benutzer).
+
 ## 4.4 Pflichtenheft
+
+% Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
+
 ## 4.5 Zwischenstand
+
+% Tabelle
+
 # 5 Implementierungsphase
-## 5.1 Implementierung der Virtuellen Maschinen
-## 5.2 Konfiguration der Router
-### 5.2.1 Konfiguration der Interfaces
-### 5.2.2 Konfiguration der statischen Routern
-### 5.2.3 Konfiguration von Network Adress Translation (NAT) und Port-Forwarding
-### 5.2.4 Konfiguration des Domain Name Server (DNS)-Servers
-### 5.2.5 Konfiguration des Zeitserver
-## 5.3 Implementierung der physischen Hosts
-### 5.3.1 Konfiguration der Interfaces
-### 5.3.2 Konfiguration des Webservers
-### 5.3.3 Konfiguration der Windows-Firewall  
-### 5.3.4 Konfiguration des Zeitservers 
-## 5.4 Konfiguration der Firewall
+
+## 5.1 Implementierung der Datenstruktur
+
+% Beschreibung der angelegten Datenbank (z.B. Generierung von SQL aus Modellierungswerkzeug oder händisches Anlegen), XML-Schemas usw..
+
+## 5.2  Implementierung der Benutzeroberfläche
+
+% Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (z.B. bei HTML-Oberflächen und Stylesheets). 
+
+% Ggfs. Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
+
+% Screenshots der Anwendung
+
+% Beispiel Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang A.8: Screenshots der Anwendung auf Seite x.
+
+## 5.3  Implementierung der Geschäftslogik
+
+% Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung. 
+
+% Ggfs. interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen. 
+
+% Quelltextbeispiele zeigen. 
+
+% Hinweis: Wie in Kapitel 1: Einleitung zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
+
+% Beispiel Die Klasse ComparedNaturalModuleInformation findet sich im Anhang A.11: Klasse: ComparedNaturalModuleInformation auf Seite xv.
+
 ## 5.5 Zwischenstand
-# 6 Abnahmephase
-## 6.1 Zwischenstand
-# 7 Dokumentation
-## 7.1 Zwischenstand
-# 8 Fazit
-## 8.1 Soll-/Ist-Vergleich
-## 8.2 Lessons Learned
-## 8.3 Ausblick
+
+% Tabelle
+
+# 6 Qualitätssicherung und Abnahme
+
+## 6.1 Testing
+
+% Welche Tests (z.B. Unit-, Integrations-, Systemtests) wurden durchgeführt und welche Ergebnisse haben sie geliefert (z.B. Logs von Unit Tests, Testprotokolle der Anwender)? 
+
+## 6.2 Abnahme
+
+% Wurde die Anwendung offiziell abgenommen?
+
+## 6.3 Zwischenstand
+
+% Tabelle
+
+# 7 Einführungsphase
+
+% Welche Schritte waren zum Deployment der Anwendung nötig und wie wurden sie durchgeführt (automatisiert/manuell)?
+
+% Wurden ggfs. Altdaten migriert und wenn ja, wie?
+
+% Wurden Benutzerschulungen durchgeführt und wenn ja, Wie wurden sie vorbereitet?
+
+# 8 Dokumentation
+
+% Wie wurde die Anwendung für die Benutzer/Administratoren/Entwickler dokumentiert (z.B. Benutzerhandbuch, API-Dokumentation)?
+
+% Hinweis: Je nach Zielgruppe gelten bestimmte Anforderungen für die Dokumentation (z.B. keine IT-Fachbegriffe in einer Anwenderdokumentation verwenden, aber auf jeden Fall in einer Dokumentation für den IT-Bereich).
+
+% Beispiel Ein Ausschnitt aus der erstellten Benutzerdokumentation befindet sich im Anhang A.13: Benutzerdokumentation auf Seite xix. Die Entwicklerdokumentation wurde mittels PHPDoc 1 automatisch generiert. Ein beispielhafter Auszug aus der Dokumentation einer Klasse findet sich im An-
+hang A.9: Entwicklerdokumentation auf Seite xii.
+
+## 8.1 Zwischenstand
+
+% Tabelle
+
+# 9 Fazit
+
+## 9.1 Soll-/Ist-Vergleich
+
+% Wurde das Projektziel erreicht und wenn nein, warum nicht?
+
+% Ist der Auftraggeber mit dem Projektergebnis zufrieden und wenn nein, warum nicht?
+
+% Wurde die Projektplanung (Zeit, Kosten, Personal, Sachmittel) eingehalten oder haben sich Abweichungen ergeben und wenn ja, warum?
+
+% Hinweis: Die Projektplanung muss nicht strikt eingehalten werden. Vielmehr sind Abweichungen sogar als normal anzusehen. Sie müssen nur vernünftig begründet werden (z.B. durch Änderungen an den Anforderungen, unter-/überschätzter Aufwand).
+
+% Tabelle
+
+## 9.2 Lessons Learned
+
+% Was hat der Prüfling bei der Durchführung des Projekts gelernt (z.B. Zeitplanung, Vorteile der eingesetzten Frameworks, Änderungen der Anforderungen)?
+
+## 9.3 Ausblick
+
+% Wie wird sich das Projekt in Zukunft weiterentwickeln (\zB geplante Erweiterungen)?
