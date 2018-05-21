@@ -21,14 +21,15 @@ Eigentlicher Kunde des Projektes sind die firmeninternen Abteilungen Verkauf und
 ## 1.2 Projektziel
 
 % Worum geht es eigentlich?
-
-
-
 % Was soll erreicht werden?
+
+Ziel des Projektes ist die Erweiterung des intern zur Angebots- und Vertragserstellung benutzten Angebotssystems. Den Onboarding-Managern soll damit ermöglicht werden, nach Vertragsannahme durch den Kunden die automatische Accounterstellung auf Doctena Pro über den bereits für die Synchronisation der Verfügbarkeiten benutzten AMQP Message-Bus auszulösen. Hierzu müssen die zur Erstellung benötigten Daten in der Angebotserstellungsmaske hinzugefügt werden. Zusätzlich soll die Maske um Eingabefelder für das in Folge zu erstellende Übergabeprotokoll erweitert und so eine Konsolidierung der bisher hierfür verwendeten Datenquellen erreicht werden.
 
 ## 1.3 Projektbegründung
 
-% Warum ist das Projekt sinnvoll (\zB Kosten- oder Zeitersparnis, weniger Fehler)?
+% Warum ist das Projekt sinnvoll (z.B. Kosten- oder Zeitersparnis, weniger Fehler)?
+
+
 
 % Was ist die Motivation hinter dem Projekt?
 
