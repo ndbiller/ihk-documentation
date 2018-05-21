@@ -39,17 +39,29 @@ Hauptmotivation hinter dem Projekt ist somit die Prozessoptimierung der bisherig
 
 % Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
 
+TODO: Data-Connector nennen.
+TODO: Welchen AMQP-Exchange-Type benutzen wir?
 
+Das bisherige Angebotssystem wurde im Rahmen der Abschlussarbeit eines anderen Auszubildenden zum Fachinformatiker für Anwendungsentwicklung mit Ruby on Rails erstellt. Es besteht aus einer in Rails üblichen MVC-Struktur. Somit erfolgt die interne Kommunikation zwischen der in der Datenhaltungsschicht angebundenen nichtrelationalen Datenbank MongoDB und den Modell-Klassen über einen in Rails als Bibliothek eingebundenen Data-Connector, (TODO). Die browserbasierte Eingabemaske des Views in der Schicht der Benutzungsoberfläche interagiert intern über die im Controller vorhandene Geschäftslogik mit in Rails üblichen CRUD-Operationen bzw. Routes mit dem Modell und somit der Datenstruktur.
+Die externe Kommunikation zwischen den railsinternen Modellen und den Objekten im Zielsystem Doctena Pro, mit denen der neue Benutzeraccount nach Vertragserstellung angelegt werden soll, erfolgt über einen AMQP Message-Bus. Dieser wird bereits zur Synchronisation der Verfügbarkeiten der Ärzte aus den verschiedenen Backendbereichen der angeschlossenen Systeme mit dem CPP von Doctena benutzt. (TODO)
 
 % Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
 
+Das Projekt wurde von Doctenas internationalem CTO, Alain Fountain, in Absprache mit dem CTO von Doctena Germany, André Rauschenbach, genehmigt. Doctena stellt somit als Kunde im Rahmen der Projektarbeit und Ausbildung alle zur Umsetzung benötigten Mittel zur Verfügung.
+
 % Wer sind die Benutzer der Anwendung?
 
+Benutzer der Anwendung sind die Mitarbeiter von Doctena Germany in den Abteilungen Verkauf und Onboarding. 
+
 % Wem muss das Ergebnis präsentiert werden?
+
+Diesen soll nach Abnahme durch den Auftraggeber, vertretten durch den CTO von Doctena Germany, das fertige Produkt präsentiert werden. Zusätzlich soll für die Benutzer eine Benutzerdokumentation für die Accounterstellung im Firmeninternen Wiki erstellt werden.
 
 ## 1.5 Projektabgrenzung
 
 % Was ist explizit nicht Teil des Projekts (insb. bei Teilprojekten)?
+
+
 
 # 2 Projektplanung
 
@@ -138,7 +150,7 @@ Hauptmotivation hinter dem Projekt ist somit die Prozessoptimierung der bisherig
 % Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC).
 Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
 
-## 4.3 Entwurf der Benutzeroberfläche
+## 4.3 Entwurf der Benutzungsoberfläche
 
 % Entscheidung für die gewählte Benutzeroberfläche (z.B. GUI, Webinterface).
 
