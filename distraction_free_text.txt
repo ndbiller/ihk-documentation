@@ -67,23 +67,35 @@ Da sich die zubuchbaren Features des Angebots teilweise noch im Entwicklungsstad
 
 ## 2.1 Projektphasen
 
-% In welchem Zeitraum und unter welchen Rahmenbedingungen (\zB Tagesarbeitszeit) findet das Projekt statt?
+% In welchem Zeitraum und unter welchen Rahmenbedingungen (z.B. Tagesarbeitszeit) findet das Projekt statt?
+
+Das Projekt soll im Zeitraum zwischen der schriftlichen Abschlussprüfung und dem Abgabetermin des Projekts während den täglichen Arbeitszeiten von 10:00 bis 19:00 Uhr umgesetzt werden. Die Arbeitszeit kann während diesem Zeitraum neben der von der Erledigung dringender oder anderweitig notwendiger Aufgaben beanspruchten Zeit frei für das Projekt genutzt werden. Entsprechend dem in Kapitel 2.5 beschriebenen Entwicklungsprozess wurde der Projektablauf in die entsprechenden Phasen unterteilt. Deren nähere Planung bzw. Durchführung kann den entsprechenden Kapiteln dieser Dokumentation entnommen werden.
 
 ## 2.2 Zeitplanung
 
 % Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
 
+% TODO: Tabelle Grobe und Detaillierte Zeitplanung und Berichtsheft verlinken.
+
+Für die Umsetzung des Projektes stehen Seitens der Anforderungen der IHK 70 Stunden zur Verfügung. Diese wurden zur Antragsstellung auf die einzelnen Phasen vererteilt. Die grobe Zeitplanung der Hauptphasen kann der Tabelle (TODO) Grobe Zeitplanung auf dieser Seite entnommen werden. Eine detailliertere Zeitplanung findet sich im Anhang unter (TODO), Nachweise über die tatsächliche Arbeitszeit unter (TODO).
+
+& Tabelle Grobe Zeitplanung
+
 ## 2.3 Abweichungen vom Projektantrag
 
-% Sollte es Abweichungen zum Projektantrag geben (\zB Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
+% Sollte es Abweichungen zum Projektantrag geben (z.B. Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
+
+% TODO: Evtl. nochmal Objekterstellung in Doctena Pro ausnehmen? Erschwerte Testbedingungen wegen zu niedriger Berechtigung erwähnen?
+
+Keine.
 
 ## 2.4 Ressourcenplanung
 
-% Detaillierte Planung der benötigten Ressourcen (Hard-/Software, Räumlichkeiten \usw).
+% Detaillierte Planung der benötigten Ressourcen (Hard-/Software, Räumlichkeiten usw.).
+% Ggf. sind auch personelle Ressourcen einzuplanen (z.B. unterstützende Mitarbeiter).
+% Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (z.B. PC, Büro).
 
-% \Ggfs sind auch personelle Ressourcen einzuplanen (\zB unterstützende Mitarbeiter).
 
-% Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (\zB PC, Büro).
 
 ## 2.5 Entwicklungsprozess
 
