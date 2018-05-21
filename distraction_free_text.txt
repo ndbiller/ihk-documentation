@@ -113,13 +113,19 @@ Diese werden sequentiel in dieser Reihenfolge bis zum Abgabetermin abgearbeitet,
 
 % Überblick
 
-
+Eine erste Analyse wurde bereits während der Projektdefinition zur Antragstellung durchgeführt. Darauf aufbauend folgt in diesem Kapitel eine genauere Analyse der Situation. Die hierbei gewonnenen Erkentnisse werden dann als Anforderungen im Lastenheft genauer definiert.
 
 ## 3.1 Ist-Analyse
 
-% Wie ist die bisherige Situation (\zB bestehende Programme, Wünsche der Mitarbeiter)?
+% Wie ist die bisherige Situation (z.B. bestehende Programme, Wünsche der Mitarbeiter)?
+
+Wie im Projektantrag schon erwähnt wurde, erstellen unsere Verkäufer täglich Angebote an Ärzte aus ganz Deutschland. Die Daten, die zur Erstellung dieser Angebote im Formular des Angebotssystems eingegeben werden, können bei Doctena Standard bereits zum automatischen Erstellen eines Accounts für den zukünftigen Benutzer verwendet werden.
+Um einen neuen Account bei Doctena Pro anzulegen, werden die selben Daten als Grundlage benutzt. Die im Angebotssystem bereits in digitaler Form vorliegenden Daten zu Ärzten und Praxis werden im momentanen Onboardingprozess bei Doctena Pro von einem Onboarding-Manager per Copy-und-Paste aus dem Angebot in ein Übergabeprotokoll im von Doctena verwendeten CRM, Close.io, kopiert. Hier kommen einige zusätzliche Informationen, wie Termine für Schulung, Feinabstimmung und Datenimport hinzu. Dann werden in einem weiteren manuellen Schritt die Accounts im Backend von Doctena Pro vom Onboarding-Manager zusammengeklickt und die Daten zu Ärzten und Praxis wieder aus dem Übergabeprotokoll per Copy-und-Paste in die Erstellmaske des Backends transferiert. Dieser Prozess ist repetetiv, nimmt unnötig Zeit in Anspruch, erzeugt in seinem Verlauf redundante Daten und ist somit fehleranfällig.
+Gleichzeitig existiert zum Datenaustausch der verschiedenen internationalen Systeme ein AMQP-Message-Queue-Bus, über den die Verfügbarkeiten der Ärzte mit dem CPP synchronisiert werden.
 
 % Was gilt es zu erstellen/verbessern?
+
+Um den Onboardingprozess zu optimieren, sollen zum einen die Daten des Übergabeprotokolles direkt im Angebotsformular eingegeben werden können, zum anderen sollen die Daten zu Praxis und den Ärzten dazu verwendet werden, die Objekterstellung in Doctena Pro über den Bus auszulösen. Hierzu müssen zusätzliche Felder im Formular der Benutzungsoberfläche und im verwendeten Datenmodell hinzugefügt werden. In der Geschäftslogik im Controller müssen die Daten dann zum auf dem Message-Queue-Bus verwendeten AMQP-Exchange-Type konvertiert werden. Es soll ein Button zum Auslösen des Versandes über den Bus erstellt werden, welcher nur für Onboarding-Manager sichtbar ist. Bei einem Vertragsabschluß für Doctena Pro soll automatisch eine E-Mail an den verantwortlichen Onboarding-Manager versendet werden, damit dieser die Daten des Angebots im Formular überprüfen und ggf. korrigieren kann und dann die automatische Accounterstellung auslösen kann. 
 
 ## 3.2 Wirtschaftlichkeitsanalyse
 
