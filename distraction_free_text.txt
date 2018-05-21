@@ -12,15 +12,17 @@ Helmuth von Moltke, preußischer Generalfeldmarschall
 
 % Kurze Vorstellung des Ausbildungsbetriebs.
 
-Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. "2013 (. . . ) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (. . . ) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (. . . ) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder überdie eigene Webseite anbieten.
+Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. Doctena bietet Patienten eine internationale Plattform zur Online-Terminbuchung an. "2013 (...) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (...) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."^1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (...) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."^2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder über die eigene Webseite anbieten.
 
 % Wer ist Auftraggeber/Kunde des Projekts?
 
-
+Eigentlicher Kunde des Projektes sind die firmeninternen Abteilungen Verkauf und Onboarding bei der Doctena Germany GmbH. Die Abnahme erfolgt hierbei durch den CTO von Doctena Germany, André Rauschenbach.
 
 ## 1.2 Projektziel
 
 % Worum geht es eigentlich?
+
+
 
 % Was soll erreicht werden?
 
