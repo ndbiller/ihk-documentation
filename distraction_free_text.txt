@@ -1,73 +1,307 @@
 # 1 Einleitung
 
+% Zitat finden, in dem es um den Wert der eigenständigen Projektarbeit geht, und dann hier einfügen.
+
 Pläne sind nichts, Planung ist alles.
 Dwight D. Eisenhower, ehemaliger US-Präsident
 
 Kein Plan überlebt die erste Feindberührung.
 Helmuth von Moltke, preußischer Generalfeldmarschall
 
-Denn auch die beste Planung ist wertlos, wenn sie nicht im Fall von widrigen Umständen schnell und einfach auf die neue Situation anpassbar ist. Während der Umsetzung der geplanten Schritte des praktischen Teils meiner Abschlussprüfung wurden mir genau diese Weisheiten immer wieder deutlich vor Augen geführt.
-
 ## 1.1 Projektumfeld
 
-### Projektumfeld:
+% Kurze Vorstellung des Ausbildungsbetriebs.
 
-Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. "2013 (. . . ) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (. . . ) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (. . . ) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder überdie eigene Webseite anbieten.
+Das Projekt wird als Teil der Abschlussprüfung im Rahmen meiner Ausbildung zum Fachinformatiker für Anwendungsentwicklung bei der Doctena Germany GmbH umgesetzt. Doctena ist ein internationales Unternehmen mit Hauptsitz in Luxemburg und Niederlassungen in 5 weiteren europäischen Ländern. Doctena bietet Patienten eine internationale Plattform zur Online-Terminbuchung an. "2013 (...) wurde die Plattform Doctena in Luxemburg ins Leben gerufen. (...) Aufgrund des anhaltenden Erfolges und des schnellen Wachstums des Projekts dehnte das Unternehmen seine Aktivitäten auf Belgien, die Niederlande, [Österreich,] die Schweiz und Deutschland aus. Seit 2016 hat sich Doctena mit sechs Wettbewerbern zusammengeschlossen: DocBook (BE), Doxter (DE), Terminland (DE), Sanmax (BE), Mednanny (AT) und Bookmydoc (LU). Doctena ist heute die führende medizinische Buchungsplattform in Europa."^1 Doctena beschäftigt momentan um die 80 Mitarbeiter, ca. 30 davon hier in Berlin. Hauptprodukt neben der Terminbuchungsplattform für Patienten ist die cloudbasierte Terminverwaltungslösung Doctena Pro für Ärzte und Praxen. "Doctena hat das Ziel, den Zugriff von Patienten auf verfügbare Termine von Ärzten und Praktikern zu vereinfachen. Patienten können mit Hilfe der Onlineplattform oder der Handy-App verfügbare Termine sehen und buchen. (...) Die Lösung ist mit vielen medizinischen Buchungssoftwares kompatibel und kann deshalb leicht in die Struktur von Ärzten und ihren Praxen integriert werden."^2 So können Ärztepraxisintern ihre Verfügbarkeiten managen und gleichzeitig freie Termine über die Plattform oder über die eigene Webseite anbieten.
 
-### Auftraggeber:
+% Wer ist Auftraggeber/Kunde des Projekts?
 
-
+Eigentlicher Kunde des Projektes sind die firmeninternen Abteilungen Verkauf und Onboarding bei der Doctena Germany GmbH. Die Abnahme erfolgt hierbei durch den CTO von Doctena Germany, André Rauschenbach.
 
 ## 1.2 Projektziel
-### Projekthintergrund:
-### Ziel des Projekts:
+
+% Worum geht es eigentlich?
+% Was soll erreicht werden?
+
+Ziel des Projektes ist die Erweiterung des intern zur Angebots- und Vertragserstellung benutzten Angebotssystems. Den Onboarding-Managern soll damit ermöglicht werden, nach Vertragsannahme durch den Kunden die automatische Accounterstellung auf Doctena Pro über den bereits für die Synchronisation der Verfügbarkeiten benutzten AMQP Message-Bus auszulösen. Hierzu müssen die zur Erstellung benötigten Daten in der Angebotserstellungsmaske hinzugefügt werden. Zusätzlich soll die Maske um Eingabefelder für das in Folge zu erstellende Übergabeprotokoll erweitert und so eine Konsolidierung der bisher hierfür verwendeten Datenquellen erreicht werden.
+
 ## 1.3 Projektbegründung
-### Nutzen des Projekts:
-### Motivation:
+
+% Warum ist das Projekt sinnvoll (z.B. Kosten- oder Zeitersparnis, weniger Fehler)?
+
+Mit diesem Projekt soll die bisherige manuelle Erstellung der neuen Kundenaccounts durch die Onboarding-Manager automatisiert werden, was zu einer Zeit- und somit auch Kostenreduzierung im Onboardingprozess führt. Gleichzeitig sollen mögliche Fehlerquellen bei der im bisherigen Prozess hierzu verwendeten doppelten Datenhaltung eliminiert werden.
+
+% Was ist die Motivation hinter dem Projekt?
+
+Hauptmotivation hinter dem Projekt ist somit die Prozessoptimierung der bisherigen Accounterstellung. Nicht zuletzt soll somit auch der Arbeitsaufwand und Streß in der Onboardingabteilung reduziert werden, der bei der Accounterstellung durch ständig wiederkehrende anspruchslose Copy-und-Paste-Tätigkeiten entstehen kann.
+
 ## 1.4 Projektschnittstellen
+
+% Mit welchen anderen Systemen interagiert die Anwendung (technische Schnittstellen)?
+
+TODO: Data-Connector nennen.
+TODO: Welchen AMQP-Exchange-Type benutzen wir?
+
+Das bisherige Angebotssystem wurde im Rahmen der Abschlussarbeit eines anderen Auszubildenden zum Fachinformatiker für Anwendungsentwicklung mit Ruby on Rails erstellt. Es besteht aus einer in Rails üblichen MVC-Struktur. Somit erfolgt die interne Kommunikation zwischen der in der Datenhaltungsschicht angebundenen nichtrelationalen Datenbank MongoDB und den Modell-Klassen über einen in Rails als Bibliothek eingebundenen Data-Connector, (TODO). Die browserbasierte Eingabemaske des Views in der Schicht der Benutzungsoberfläche interagiert intern über die im Controller vorhandene Geschäftslogik mit in Rails üblichen CRUD-Operationen bzw. Routes mit dem Modell und somit der Datenstruktur.
+Die externe Kommunikation zwischen den railsinternen Modellen und den Objekten im Zielsystem Doctena Pro, mit denen der neue Benutzeraccount nach Vertragserstellung angelegt werden soll, erfolgt über einen AMQP Message-Bus. Dieser wird bereits zur Synchronisation der Verfügbarkeiten der Ärzte aus den verschiedenen Backendbereichen der angeschlossenen Systeme mit dem CPP von Doctena benutzt. (TODO)
+
+% Wer genehmigt das Projekt \bzw stellt Mittel zur Verfügung? 
+
+Das Projekt wurde von Doctenas internationalem CTO, Alain Fountain, in Absprache mit dem CTO von Doctena Germany, André Rauschenbach, genehmigt. Doctena stellt somit als Kunde im Rahmen der Projektarbeit und Ausbildung alle zur Umsetzung benötigten Mittel zur Verfügung.
+
+% Wer sind die Benutzer der Anwendung?
+
+Benutzer der Anwendung sind die Mitarbeiter von Doctena Germany in den Abteilungen Verkauf und Onboarding. 
+
+% Wem muss das Ergebnis präsentiert werden?
+
+Diesen soll nach Abnahme durch den Auftraggeber, vertretten durch den CTO von Doctena Germany, das fertige Produkt präsentiert werden. Zusätzlich soll für die Benutzer eine Benutzerdokumentation für die Accounterstellung im Firmeninternen Wiki erstellt werden.
+
 ## 1.5 Projektabgrenzung
+
+% Was ist explizit nicht Teil des Projekts (insb. bei Teilprojekten)?
+
+Da sich die zubuchbaren Features des Angebots teilweise noch im Entwicklungsstadium befinden, kann deren Setzen über den Bus nicht innerhalb des Projektzeitraumes gewährleistet werden, da sich an deren Funktionalität und Struktur im Zielsystem noch große Teile ändern können. Deswegen wurde die Umsetzung dieser Funktionalität bereits im Projektantrag aus den gestellten Anforderungen ausgeklammert. Auch das Umsetzen der Objekterstellung im Zielsystem kann wegen der zur Zeit hohen Arbeitsauslastung der Entwickler in Luxemburg bei anderen Projekten nicht innerhalb des Projektzeitraumes gewährleistet werden. Dieses Teilprojekt wird voraussichtlich erst zu einem späteren Zeitpunkt realisiert. Aus diesem Grund kann momentan nur die Korrektheit der an die Messaging-Queues auf dem Bus gesendeten Daten gewährleistet werden. Wie diese von Doctena Pro verarbeitet werden, liegt in der Verantwortung der entsprechenden Entwickler vor Ort.
+
 # 2 Projektplanung
+
 ## 2.1 Projektphasen
+
+% In welchem Zeitraum und unter welchen Rahmenbedingungen (z.B. Tagesarbeitszeit) findet das Projekt statt?
+
+Das Projekt soll im Zeitraum zwischen der schriftlichen Abschlussprüfung und dem Abgabetermin des Projekts während den täglichen Arbeitszeiten von 10:00 bis 19:00 Uhr umgesetzt werden. Die Arbeitszeit kann während diesem Zeitraum neben der von der Erledigung dringender oder anderweitig notwendiger Aufgaben beanspruchten Zeit frei für das Projekt genutzt werden. Entsprechend dem in Kapitel 2.5 beschriebenen Entwicklungsprozess wurde der Projektablauf in die entsprechenden Phasen unterteilt. Deren nähere Planung bzw. Durchführung kann den entsprechenden Kapiteln dieser Dokumentation entnommen werden.
+
 ## 2.2 Zeitplanung
+
+% Verfeinerung der Zeitplanung, die bereits im Projektantrag vorgestellt wurde.
+
+% TODO: Tabelle Grobe und Detaillierte Zeitplanung und Berichtsheft verlinken.
+
+Für die Umsetzung des Projektes stehen Seitens der Anforderungen der IHK 70 Stunden zur Verfügung. Diese wurden zur Antragsstellung auf die einzelnen Phasen vererteilt. Die grobe Zeitplanung der Hauptphasen kann der Tabelle (TODO) Grobe Zeitplanung auf dieser Seite entnommen werden. Eine detailliertere Zeitplanung findet sich im Anhang unter (TODO), Nachweise über die tatsächliche Arbeitszeit unter (TODO).
+
+& Tabelle Grobe Zeitplanung
+
 ## 2.3 Abweichungen vom Projektantrag
+
+% Sollte es Abweichungen zum Projektantrag geben (z.B. Zeitplanung, Inhalt des Projekts, neue Anforderungen), müssen diese explizit aufgeführt und begründet werden.
+
+% TODO: Evtl. nochmal Objekterstellung in Doctena Pro ausnehmen? Erschwerte Testbedingungen wegen zu niedriger Berechtigung erwähnen?
+
+Keine.
+
 ## 2.4 Ressourcenplanung
+
+% Detaillierte Planung der benötigten Ressourcen (Hard-/Software, Räumlichkeiten usw.).
+% Ggf. sind auch personelle Ressourcen einzuplanen (z.B. unterstützende Mitarbeiter).
+% Hinweis: Häufig werden hier Ressourcen vergessen, die als selbstverständlich angesehen werden (z.B. PC, Büro).
+
+% TODO: Tabelle Genaue Auflistung erstellen und verlinken. Mit André Kosten besprechen.
+
+Die benötigten Mittel zur Durchführung des Projektes werden vom Auftraggeber Doctena zur verfügung gestellt und eine detaillierte Auflistung der Ressourcen und deren Kosten findet sich im Anhang unter (TODO). Diese werden auch als Grundlage für die im weiteren Verlauf in Kapitel 3 angestellten Berechnungen verwendet.
+
 ## 2.5 Entwicklungsprozess
+
+% Welcher Entwicklungsprozess wird bei der Bearbeitung des Projekts verfolgt (\zB Wasserfall, agiler Prozess)?
+
+Der Projektablauf wurde vom Wasserfallmodell ausgehend in die folgenden Projektphasen unterteilt:
+
+Definition und Projektantrag, Planung, Analyse, Entwurf, Implementierung, Qualitätssicherung und Abnahme, Einführung, Dokumentation
+
+Diese werden sequentiel in dieser Reihenfolge bis zum Abgabetermin abgearbeitet, wobei es zwischenzeitlich immer wieder Zeit für Besprechungsmöglichkeiten mit den am Projekt Beteiligten Stellen zum aktuellen Stand geben wird. Die Entwicklung während der Implementierungsphase wird nach TDD-Prinzipien durchgefürt, wodurch auch die Tests zur Sicherstellung der Einhaltung der vereinbarten Anforderungen aus dem Pflichtenheft teilweise während dieser Phase erstellt werden. Da das Angebotssystem an unsere CI-Pipeline angebunden ist, kann eine erfolgreiche Abnahme und anschließende Einführung erst nach einem bestehen aller Tests der Qualitätssicherung erfolgen. Artefakte für die Dokumentation werden, wenn möglich, während der gesammten Durchführung gesammelt und angelegt.
+
 # 3 Analysephase
+
+% Überblick
+
+Eine erste Analyse wurde bereits während der Projektdefinition zur Antragstellung durchgeführt. Darauf aufbauend folgt in diesem Kapitel eine genauere Analyse der Situation. Die hierbei gewonnenen Erkentnisse werden dann als Anforderungen im Lastenheft genauer definiert.
+
 ## 3.1 Ist-Analyse
+
+% Wie ist die bisherige Situation (z.B. bestehende Programme, Wünsche der Mitarbeiter)?
+
+Wie im Projektantrag schon erwähnt wurde, erstellen unsere Verkäufer täglich Angebote an Ärzte aus ganz Deutschland. Die Daten, die zur Erstellung dieser Angebote im Formular des Angebotssystems eingegeben werden, können bei Doctena Standard bereits zum automatischen Erstellen eines Accounts für den zukünftigen Benutzer verwendet werden.
+Um einen neuen Account bei Doctena Pro anzulegen, werden die selben Daten als Grundlage benutzt. Die im Angebotssystem bereits in digitaler Form vorliegenden Daten zu Ärzten und Praxis werden im momentanen Onboardingprozess bei Doctena Pro von einem Onboarding-Manager per Copy-und-Paste aus dem Angebot in ein Übergabeprotokoll im von Doctena verwendeten CRM, Close.io, kopiert. Hier kommen einige zusätzliche Informationen, wie Termine für Schulung, Feinabstimmung und Datenimport hinzu. Dann werden in einem weiteren manuellen Schritt die Accounts im Backend von Doctena Pro vom Onboarding-Manager zusammengeklickt und die Daten zu Ärzten und Praxis wieder aus dem Übergabeprotokoll per Copy-und-Paste in die Erstellmaske des Backends transferiert. Dieser Prozess ist repetetiv, nimmt unnötig Zeit in Anspruch, erzeugt in seinem Verlauf redundante Daten und ist somit fehleranfällig.
+Gleichzeitig existiert zum Datenaustausch der verschiedenen internationalen Systeme ein AMQP-Message-Queue-Bus, über den die Verfügbarkeiten der Ärzte mit dem CPP synchronisiert werden.
+
+% Was gilt es zu erstellen/verbessern?
+
+Um den Onboardingprozess zu optimieren, sollen zum einen die Daten des Übergabeprotokolles direkt im Angebotsformular eingegeben werden können, zum anderen sollen die Daten zu Praxis und den Ärzten dazu verwendet werden, die Objekterstellung in Doctena Pro über den Bus auszulösen. Hierzu müssen zusätzliche Felder im Formular der Benutzungsoberfläche und im verwendeten Datenmodell hinzugefügt werden. In der Geschäftslogik im Controller müssen die Daten dann zum auf dem Message-Queue-Bus verwendeten AMQP-Exchange-Type konvertiert werden. Es soll ein Button zum Auslösen des Versandes über den Bus erstellt werden, welcher nur für Onboarding-Manager sichtbar ist. Bei einem Vertragsabschluß für Doctena Pro soll automatisch eine E-Mail an den verantwortlichen Onboarding-Manager versendet werden, damit dieser die Daten des Angebots im Formular überprüfen und ggf. korrigieren kann und dann die automatische Accounterstellung auslösen kann. 
+
 ## 3.2 Wirtschaftlichkeitsanalyse
+
 ### 3.2.1 „Make or Buy“-Entscheidung
+
+% Gibt es vielleicht schon ein fertiges Produkt, dass alle Anforderungen des Projekts abdeckt?
+% Wenn ja, wieso wird das Projekt trotzdem umgesetzt?
+
+Die „Make or Buy“-Entscheidung ist in diesem Fall leicht getroffen. Zum einen existiert bereits eine bestehende Busverbindung zum Datentransfer zwischen unserem in Rails geschriebenem Backend, in welchem das Angebotssystem eingebettet ist, und dem Zielsystem Doctena Pro. Zum anderen kann über kommerziell erhältliche Lösungen zur Angebotserstellung die automatische Accounterstellung nicht realisiert, und so auch der bisherige manuelle Onboardingprozess nicht optimiert werden. 
+
 ### 3.2.2 Projektkosten
+
+% Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (z.B. Entwicklung, Einführung/Schulung, Wartung)?
+% Stundenlohn (brutto) = 3 × dein Monatslohn (brutto) ÷ 13 ÷ die Anzahl deiner wöchentlichen Arbeitsstunden
+
+% TODO: Berechnen, Kostentabelle verlinken, Text
+
 ### 3.2.3 Amortisationsdauer
+
+% Welche monetären Vorteile bietet das Projekt (z.B. Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
+% Wann hat sich das Projekt amortisiert?
+
+% TODO: Berechnen, Amortisationstabelle verlinken, Text
+
 ## 3.3 Nutzwertanalyse
+
+% Darstellung des nicht-monetären Nutzens (z.B. Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
+
+
+
 ## 3.4 Qualitätsanforderungen
+
+% Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
+
 ## 3.5 Lastenheft
+
+% Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
+
+% Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+
 ## 3.6 Zwischenstand
+
+% Tabelle
+
 # 4 Entwurfsphase
+
+% Erklärung
+
 ## 4.1 Zielplattform
-## 4.2 Netzwerkplan
-## 4.3 Maßnahmen zur Qualitätssicherung
+
+% Beschreibung der Kriterien zur Auswahl der Zielplattform (u.a. Programmiersprache, Datenbank, Client/Server, Hardware)
+
+## 4.2 Architekturdesign
+
+% Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC).
+Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
+
+## 4.3 Entwurf der Benutzungsoberfläche
+
+% Entscheidung für die gewählte Benutzeroberfläche (z.B. GUI, Webinterface).
+
+% Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
+
+% Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
+
+## 4.4 Datenmodell
+
+% Entwurf/Beschreibung der Datenstrukturen (z.B. ERM und/oder Tabellenmodell, XML-Schemas) mit kurzer Beschreibung der wichtigsten (!) verwendeten Entitäten.
+
+## 4.5 Geschäftslogik
+
+% Modellierung und Beschreibung der wichtigsten (!) Bereiche der Geschäftslogik (z.B. mit Komponenten-, Klassen-, Sequenz-, Datenflussdiagramm, Programmablaufplan, Struktogramm, Ereignisgesteuerte Prozesskette (EPK)).
+
+% Wie wird die erstellte Anwendung in den Arbeitsfluss des Unternehmens
+integriert?
+
+## 4.6 Maßnahmen zur Qualitätssicherung
+
+% Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel 3.4: Qualitätsanforderungen) zu sichern (z.B. automatische Tests, Anwendertests)?
+
+% Ggfs. Definition von Testfällen und deren Durchführung (durch
+Programme/Benutzer).
+
 ## 4.4 Pflichtenheft
+
+% Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
+
 ## 4.5 Zwischenstand
+
+% Tabelle
+
 # 5 Implementierungsphase
-## 5.1 Implementierung der Virtuellen Maschinen
-## 5.2 Konfiguration der Router
-### 5.2.1 Konfiguration der Interfaces
-### 5.2.2 Konfiguration der statischen Routern
-### 5.2.3 Konfiguration von Network Adress Translation (NAT) und Port-Forwarding
-### 5.2.4 Konfiguration des Domain Name Server (DNS)-Servers
-### 5.2.5 Konfiguration des Zeitserver
-## 5.3 Implementierung der physischen Hosts
-### 5.3.1 Konfiguration der Interfaces
-### 5.3.2 Konfiguration des Webservers
-### 5.3.3 Konfiguration der Windows-Firewall  
-### 5.3.4 Konfiguration des Zeitservers 
-## 5.4 Konfiguration der Firewall
+
+## 5.1 Implementierung der Datenstruktur
+
+% Beschreibung der angelegten Datenbank (z.B. Generierung von SQL aus Modellierungswerkzeug oder händisches Anlegen), XML-Schemas usw..
+
+## 5.2  Implementierung der Benutzeroberfläche
+
+% Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (z.B. bei HTML-Oberflächen und Stylesheets). 
+
+% Ggfs. Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
+
+% Screenshots der Anwendung
+
+% Beispiel Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang A.8: Screenshots der Anwendung auf Seite x.
+
+## 5.3  Implementierung der Geschäftslogik
+
+% Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung. 
+
+% Ggfs. interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen. 
+
+% Quelltextbeispiele zeigen. 
+
+% Hinweis: Wie in Kapitel 1: Einleitung zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
+
+% Beispiel Die Klasse ComparedNaturalModuleInformation findet sich im Anhang A.11: Klasse: ComparedNaturalModuleInformation auf Seite xv.
+
 ## 5.5 Zwischenstand
-# 6 Abnahmephase
-## 6.1 Zwischenstand
-# 7 Dokumentation
-## 7.1 Zwischenstand
-# 8 Fazit
-## 8.1 Soll-/Ist-Vergleich
-## 8.2 Lessons Learned
-## 8.3 Ausblick
+
+% Tabelle
+
+# 6 Qualitätssicherung und Abnahme
+
+## 6.1 Testing
+
+% Welche Tests (z.B. Unit-, Integrations-, Systemtests) wurden durchgeführt und welche Ergebnisse haben sie geliefert (z.B. Logs von Unit Tests, Testprotokolle der Anwender)? 
+
+## 6.2 Abnahme
+
+% Wurde die Anwendung offiziell abgenommen?
+
+## 6.3 Zwischenstand
+
+% Tabelle
+
+# 7 Einführungsphase
+
+% Welche Schritte waren zum Deployment der Anwendung nötig und wie wurden sie durchgeführt (automatisiert/manuell)?
+
+% Wurden ggfs. Altdaten migriert und wenn ja, wie?
+
+% Wurden Benutzerschulungen durchgeführt und wenn ja, Wie wurden sie vorbereitet?
+
+# 8 Dokumentation
+
+% Wie wurde die Anwendung für die Benutzer/Administratoren/Entwickler dokumentiert (z.B. Benutzerhandbuch, API-Dokumentation)?
+
+% Hinweis: Je nach Zielgruppe gelten bestimmte Anforderungen für die Dokumentation (z.B. keine IT-Fachbegriffe in einer Anwenderdokumentation verwenden, aber auf jeden Fall in einer Dokumentation für den IT-Bereich).
+
+% Beispiel Ein Ausschnitt aus der erstellten Benutzerdokumentation befindet sich im Anhang A.13: Benutzerdokumentation auf Seite xix. Die Entwicklerdokumentation wurde mittels PHPDoc 1 automatisch generiert. Ein beispielhafter Auszug aus der Dokumentation einer Klasse findet sich im An-
+hang A.9: Entwicklerdokumentation auf Seite xii.
+
+## 8.1 Zwischenstand
+
+% Tabelle
+
+# 9 Fazit
+
+## 9.1 Soll-/Ist-Vergleich
+
+% Wurde das Projektziel erreicht und wenn nein, warum nicht?
+
+% Ist der Auftraggeber mit dem Projektergebnis zufrieden und wenn nein, warum nicht?
+
+% Wurde die Projektplanung (Zeit, Kosten, Personal, Sachmittel) eingehalten oder haben sich Abweichungen ergeben und wenn ja, warum?
+
+% Hinweis: Die Projektplanung muss nicht strikt eingehalten werden. Vielmehr sind Abweichungen sogar als normal anzusehen. Sie müssen nur vernünftig begründet werden (z.B. durch Änderungen an den Anforderungen, unter-/überschätzter Aufwand).
+
+% Tabelle
+
+## 9.2 Lessons Learned
+
+% Was hat der Prüfling bei der Durchführung des Projekts gelernt (z.B. Zeitplanung, Vorteile der eingesetzten Frameworks, Änderungen der Anforderungen)?
+
+## 9.3 Ausblick
+
+% Wie wird sich das Projekt in Zukunft weiterentwickeln (\zB geplante Erweiterungen)?
