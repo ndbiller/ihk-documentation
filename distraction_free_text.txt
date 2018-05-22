@@ -141,17 +141,20 @@ Die „Make or Buy“-Entscheidung ist in diesem Fall leicht getroffen. Zum eine
 % Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (z.B. Entwicklung, Einführung/Schulung, Wartung)?
 % Stundenlohn (brutto) = 3 × dein Monatslohn (brutto) ÷ 13 ÷ die Anzahl deiner wöchentlichen Arbeitsstunden
 
-
+% TODO: Berechnen, Kostentabelle verlinken, Text
 
 ### 3.2.3 Amortisationsdauer
 
-% Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
-
+% Welche monetären Vorteile bietet das Projekt (z.B. Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
 % Wann hat sich das Projekt amortisiert?
+
+% TODO: Berechnen, Amortisationstabelle verlinken, Text
 
 ## 3.3 Nutzwertanalyse
 
-% Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
+% Darstellung des nicht-monetären Nutzens (z.B. Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
+
+
 
 ## 3.4 Qualitätsanforderungen
 
