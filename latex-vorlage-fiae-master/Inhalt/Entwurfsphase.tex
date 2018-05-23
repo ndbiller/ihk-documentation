@@ -2,36 +2,75 @@
 \section{Entwurfsphase} 
 \label{sec:Entwurfsphase}
 % Erklärung
-Da Hard- und Software von unserem Auftraggeber gestellt und vorgegeben wird, erübrigt seine ausführliche Begründung, weshalb wir diese Materialien verwendet haben. So wird sichergestellt, dass während unserer Projektzeit allen die gleichen benötigten Mittel zur Verfügung stehen.
+Da das Projekt die Erweiterung des Funktionsumfanges eines bereits bestehenden Systems darstellt, sind viele Entscheidungen zu den verwendeten Technologien bereits im Vorfeld getroffen. Im Folgenden wird deshalb detaillierter beschrieben, wie die geplanten Erweiterungen im existierenden Angebotssystem realisiert werden sollen.
 
 \subsection{Zielplattform}
 \label{sec:Zielplattform}
+% Beschreibung der Kriterien zur Auswahl der Zielplattform (u.a. Programmiersprache, Datenbank, Client/Server, Hardware)
 
-\paragraph*{Hardware: } 
-Die uns zur Verfügung stehenden Desktop \ac{PC}s bleiben unverändert. Die Leistungsdaten derer  genügen für den Aufbau einer einfachen \ac{DMZ}.
+TODO: browser, html, css, javascript, ruby, rails, mongodb, aws, heroku, cloud
 
-\paragraph*{Software: } 
-Für die Implementation eines Routers als virtuelle Maschine nutzen wir den vorinstallierten VMWare Player. Dieser ist kostenlos und berechtigt uns zum Virtualisieren einer Linux Distribution. Des Weiteren werden wir auch das beigefügte Debian benutzen. Auf den \ac{VM}s wird mit \ac{BASH} und Linux-Befehlen gearbeitet, da wir nur kleinere Konfigurationen und Scripts schreiben. Um die Konfiguration zu testen, die Router per Remote zu konfigurieren und eventuell Dateien auszutauschen, wird noch \ac{SSH}- und \ac{FTP}-Client-Software benötigt. Dafür werden wir Putty und winscp verwenden. Diese Tools sind kompakt und beeinträchtigen nicht die Leistung der Hosts.
+(TODO)
 
-\subsection{Netzwerkplan}
-\label{sec:Geschaeftslogik}
+\subsection{Architekturdesign}
+\label{sec:Architekturdesign}
+% Netzpläne \Anhang{app:Netzplan}
+% Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC). Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
 
-Die im \Anhang{app:Netzplan} zu findenden Netzpläne zeigen die grundsätzliche \ac{IP}-Adressverteilung in den geplanten Netzen unseres Projektes.
-Der zweite Netzplan zeigt die erweiterte Testumgebung die wir gegen Ende des Projekts zuhause einrichten mussten, um die Tests an der Firewall zu beenden. 
-Unser Netz teilt sich gleichfalls jeweils in das Labornetz (hier auch symbolisch für die Cloud, das Internet, \etc. stehend), das von der Außenwelt abgeschottete interne Netz (mit den Windows-Clients und dem Admin-Rechner unseres Kunden) und das als Pufferzone dazwischen liegende \ac{DMZ}-Netzwerk, welches zur Absicherung des internen Netzes nur über spezielle Berechtigungen zu erreichen und für spezielle Dienste (Webserver) zu verwenden ist.
+TODO: rails, mvc
+
+(TODO)
+
+\subsection{Entwurf der Benutzungsoberfläche}
+\label{sec:Benutzungsoberfläche}
+% Entscheidung für die gewählte Benutzeroberfläche (z.B. GUI, Webinterface).
+% Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
+% Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
+
+TODO: für wen, bootstrap, screenshot, neue felder, mockup
+
+(TODO)
+
+\subsection{Datenmodell}
+\label{sec:Datenmodell}
+% Entwurf/Beschreibung der Datenstrukturen (z.B. ERM und/oder Tabellenmodell, XML-Schemas) mit kurzer Beschreibung der wichtigsten (!) verwendeten Entitäten.
+
+TODO: erm contract, zustandsdiagramm contract
+
+(TODO)
+
+\subsection{Geschäftslogik}
+\label{sec:Geschäftslogik}
+% Modellierung und Beschreibung der wichtigsten (!) Bereiche der Geschäftslogik (z.B. mit Komponenten-, Klassen-, Sequenz-, Datenflussdiagramm, Programmablaufplan, Struktogramm, Ereignisgesteuerte Prozesskette (EPK)).
+% Wie wird die erstellte Anwendung in den Arbeitsfluss des Unternehmens integriert?
+
+TODO: mapping standard > pro, klassendiagramme standard und pro
+
+(TODO)
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
 % Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen}) zu sichern (\zB automatische Tests, Anwendertests)?
 % \Ggfs Definition von Testfällen und deren Durchführung (durch Programme/Benutzer).
-Bei jeder Veränderungen der Konfiguration werden Funktionstests durchgeführt. Diese sollen gewährleisten, dass die Anforderungen aus dem \nameref{sec:Lastenheft} eingehalten werden. Vorgenommene Änderungen an der Firewall und der Systemkonfiguration werden in unserer vorläufigen Dokumentation, zu finden im \Anhang{app:Anleitung}, notiert und das Firewall-Script wird separat auf einem externen Datenträger gespeichert. So wird sichergestellt, dass auch bei einem Defekt eines der virtuellen Linux-Router die ursprüngliche Konfiguration schnell wieder von Null auf herstellbar ist und möglichst keine Downtime bei der Arbeit entsteht.
+
+TODO: minitest, tdd, ci
+
+(TODO)
 
 \subsection{Pflichtenheft}
 \label{sec:Pflichtenheft}
 % Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
-Die aus den zuvor im \nameref{sec:Lastenheft} gesammelten Punkte hervorgehenden Anforderungen werden im Pflichtenheft genauer in bevorstehende Aufgaben übersetzt. Dieses ist im \Anhang{app:Pflichtenheft} zu finden.
-
-%\paragraph{Beispiel}
-%Ein Beispiel für das auf dem Lastenheft (siehe Kapitel~\ref{sec:Lastenheft}: \nameref{sec:Lastenheft}) aufbauende Pflichtenheft ist im \Anhang{app:Pflichtenheft} zu finden.
+% Refferenz:\nameref{sec:Lastenheft}
+% Pflichtenheft: \Anhang{app:Pflichtenheft}
+Im folgenden die wichtigsten vereinbarten Pflichten des Projektes bezüglich Qualitätssicherung, um die Funktionalität und Erweiterbarkeit während der aktiven Nutzung im Produktivsystem gewährleisten zu können.\\[1.5ex]
+\textbf{Pflichten der Benutzungsoberfläche:}\\[1.5ex]
+\textbf{PB10:} Die Daten des Übergabeprotokolls müssen persistiert, geladen und erneut persistiert werden.\\
+\textbf{PB20:} Der Button zur Account-Erstellung muss den Datenversand über den AMQP Message-Queue-Bus auslösen.\\
+\textbf{PB30:} Die Daten zur Account-Erstellung müssen persistiert, geladen und erneut persistiert werden.\\[1.5ex]
+\textbf{Funktionelle Pflichten:}\\[1.5ex]
+\textbf{PF10:} Für Benutzer mit der Rolle Manager muss der Button zur Account-Erstellung sowie die Formularfelder zur Account-Erstellung und das Übergabeprotokoll sichtbar sein. Für Benutzer mit der Rolle Verkäufer müssen die Formularfelder zur Account-Erstellung und das Übergabeprotokoll sichtbar sein. Für einen Benutzer ohne Rolle dürfen weder der Button zur Account-Erstellung noch die Formularfelder zur Account-Erstellung oder das Übergabeprotokoll vorhanden sein.\\
+\textbf{PF20:} Bei einem Vertragsabschluss muss eine E-Mail an die Adresse onboarding@doctena.com gesendet werden.\\
+\textbf{PF40:} Die Daten aus dem Vertrag müssen zur Account-Erstellung in das auf dem AMQP Message-Queue-Bus verwendete Datenformat übersetzt werden.\\
+\textbf{PF50:} Bei mehr als einem Arzt pro Praxis muss ein zusätzlicher User als Admin-User ohne Arzt und Kalender erstellt und dieses zusätzliche Objekt über den Bus gesendet werden.\\
 
 \Zwischenstand{Entwurfsphase}{Entwurf}

@@ -2,47 +2,57 @@
 \section{Analysephase} 
 \label{sec:Analysephase}
 % Überblick
-Im Nachfolgenden verzichten wir auf einen Großteil der üblichen Berechnungen zur Wirtschaftlichkeit des Projektes, da dieses zum Großteil unserer fachlichen Kompetenzbildung dienen soll. Darüber hinaus wäre für ein fiktives mittelständisches Unternehmen ein bereits existierendes Produkt sowohl vom zu erwartenden Arbeitsaufwand wie auch finanziell deutlich günstiger. Es wird daher lediglich eine Beispielhafte Kostenberechnung für die Umsetzung der Planung durch uns erstellt und dafür ein größeres Augenmerk auf Anforderungen und Nutzen des Projekts gelegt. 
+Eine erste Analyse wurde bereits während der Projektdefinition zur Antragstellung durchgeführt. Darauf aufbauend folgt in diesem Kapitel eine genauere Analyse der Situation. Die hierbei gewonnenen Erkenntnisse werden dann als Anforderungen im Lastenheft genauer definiert.
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
 % Wie ist die bisherige Situation (\zB bestehende Programme, Wünsche der Mitarbeiter)?
-\paragraph*{Was ist vorhanden: } Im Labor sind für jedes Gruppenmitglied vorhanden: ein Bildschirmarbeitsplatz, Windows 7, Admin-Rechte, zwei physikalische Netzwerkinterfaces, Anschluss an Labornetzwerk und Internet, die Software VMWare Player, Debian Images auf einem Netzlaufwerk sowie ein portabler Miniwebserver.
+Unsere Verkäufer erstellen täglich Angebote an Ärzte aus ganz Deutschland. Die Daten, die zur Erstellung dieser Angebote im Formular des Angebotssystems eingegeben werden, können bei Doctena Standard bereits zum automatischen Erstellen eines Accounts für den zukünftigen Benutzer verwendet werden.
+Um einen neuen Account bei Doctena Pro anzulegen werden die gleichen Daten als Grundlage benutzt. Die im Angebotssystem bereits in digitaler Form vorliegenden Daten zu Ärzten und Praxis werden im momentanen Onboarding-Prozess bei Doctena Pro von einem Onboarding-Manager per Copy-und-Paste aus dem Angebot in ein Übergabeprotokoll im von Doctena verwendeten CRM, Close.io, kopiert. Hier kommen einige zusätzliche Informationen, wie Termine für Schulung, Feinabstimmung und Datenimport hinzu. Dann werden in einem weiteren manuellen Schritt die Accounts im Backend von Doctena Pro vom Onboarding-Manager zusammengeklickt und die Daten zu Ärzten und Praxis wieder aus dem Übergabeprotokoll per Copy-und-Paste in die Eingabemaske des Backends transferiert. Dieser Prozess ist repetitiv, nimmt unnötig Zeit in Anspruch, erzeugt in seinem Verlauf redundante Daten und ist somit fehleranfällig.
+Gleichzeitig existiert zum Datenaustausch der verschiedenen internationalen Systeme ein AMQP-Message-Queue-Bus, über den die Verfügbarkeiten der Ärzte mit dem CPP synchronisiert werden.
 % Was gilt es zu erstellen/verbessern?
-\paragraph*{Was ist zu erstellen: } Zuerst muss nun von jeder Gruppe ein Netzplan erstellt werden. Dann gilt es, die Debian 7 (Wheezy) Linux-Images in virtuellen Maschinen auf beiden Rechnern mit Hilfe des VMWare Players aufzusetzen. Diese werden zu einem Outside- und einem Inside-Router konfiguriert und die geplanten Netzwerk- und Routing-Einstellungen müssen sowohl an den virtuellen wie auch physikalischen Schnittstellen durchgeführt werden. Auf dem Rechner des Outside-Routers muss ein Webserver eingerichtet werden, wofür \ac{NAT} und Port-Forwarding nötig sind. Zwischendurch wird es immer wieder der gezielten Recherche bedürfen. Um schließlich Zugriffe von außen zu regulieren, muss eine Firewall mit entsprechenden Regeln erstellt werden, die per Skript an- und abschaltbar ist. Die Funktionalität muss getestet werden und Projekt und Tests sind zu dokumentieren. Unser Lernfortschritt ist in einem Kompetenzportfolio niederzuschreiben. Gleichzeitig sind Laborübungen und Tests zu Linux-Kenntnissen zu absolvieren.
+Um den Onboarding-Prozess zu optimieren, sollen zum einen die Daten des Übergabeprotokolls direkt im Angebotsformular eingegeben werden können, zum anderen sollen die Daten zu Praxis und den Ärzten dazu verwendet werden, die Objekterstellung in Doctena Pro über den Bus auszulösen. Hierzu müssen zusätzliche Felder im Formular der Benutzungsoberfläche und im verwendeten Datenmodell hinzugefügt werden. In der Geschäftslogik im Controller müssen die Daten dann zum auf dem Message-Queue-Bus verwendeten AMQP-Exchange-Type konvertiert werden. Es soll ein Button zum Auslösen des Versandes über den Bus erstellt werden, welcher nur für Onboarding-Manager sichtbar ist. Bei einem Vertragsabschluss für Doctena Pro soll automatisch eine E-Mail an den verantwortlichen Onboarding-Manager versendet werden, damit dieser die Daten des Angebots im Formular überprüfen und ggf. korrigieren kann und dann die automatische Account-Erstellung auslösen kann.
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
-Wie bereits Anfänglich erwähnt, lohnt sich das Projekt für ein fiktives mittelständisches Unternehmen nur bedingt.
+
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
 % Gibt es vielleicht schon ein fertiges Produkt, dass alle Anforderungen des Projekts abdeckt?
-Die Kosten für eine qualifizierte Kraft zur ständigen Wartung des Servers, die durch Dauerbetrieb anfallenden Stromkosten sowie die zusätzlichen Hardwarekosten bei einem zukünftigen Up-Scaling übersteigen bei weitem die Kosten für einen fachkundig und sicher Administrierten Server bei einem seriösen Hosting-Anbieter.
 % Wenn ja, wieso wird das Projekt trotzdem umgesetzt?
-Da unsere Empfehlung an den Kunden ein Produkt eines anderen Anbieters wäre, wird das Projekt nur zu unserem Nutzen und der Erfahrung willen, die wir damit gewinnen, umgesetzt.
+Die \gqq{Make or Buy}-Entscheidung ist in diesem Fall leicht getroffen. Zum einen existiert bereits eine bestehende \ac{AMQP}-Busverbindung zum Datentransfer zwischen dem Ruby on Rails Backend von Doctena Standard, in welchem das Angebotssystem eingebettet ist, und dem Java Zielsystem Doctena Pro in Luxemburg. Zum anderen kann über kommerziell erhältliche Lösungen zur Angebotserstellung die automatische Account-Erstellung nicht realisiert, und so auch der bisherige manuelle Onboarding-Prozess nicht optimiert werden.
+
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
 % Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (\zB Entwicklung, Einführung/Schulung, Wartung)?
-Da es sich nur um ein fiktives Projekt handelt, verzichten wir auf eine detaillierte Berechnung mit Stromkosten innerhalb des Labors, den Gehältern der Lehrkräfte oder etwaiger Lizenzgebühren. Wir beschränken uns auf eine fiktive Beispielrechnung mit unserem Stundenlohn während der Projektdauer.
-\paragraph*{Beispielrechnung (verkürzt): } Die realen Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen. Wir rechnen hier lediglich mit dem fiktiven Gehalt eines Auszubildendem im zweiten Lehrjahr von ca. \eur{800} Brutto pro Monat. 
-% Stundenlohn (brutto) = 3 × dein Monatslohn (brutto) ÷ 13 ÷ die Anzahl deiner wöchentlichen Arbeitsstunden
-\begin{eqnarray}
-3\cdot \eur{800}\mbox{/Monat} \div {13} \div 40 \mbox{ h/Monat} \approx \eur{4,62}\mbox{/h}
-\end{eqnarray}
-Es ergibt sich also ein Stundenlohn von \eur{4,62}. Die Durchführungszeit des Projekts beträgt 42 Stunden. Die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner etc.} sowie die Kosten durch andere Mitarbeiter werden hier nicht mit eingerechnet. Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung} und sie betragen insgesamt \eur{388,08} für zwei Entwickler bei 42 h/Monat Arbeitszeit und je einem Gehalt von \eur{800} monatlich.
 
-\tabelle{Kosten für 2 Entwickler/Monat}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
+TODO: Berechnung anzeigen, Kostentabelle erweitern, Endwert eintragen
+
+Die realen Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen. Gerechnet wird hier bei den Personalkosten lediglich mit dem fiktiven Gehalt eines Auszubildendem im dritten Lehrjahr von ungefähr \eur{884} Brutto bei 20 Arbeitstagen im Monat. Der Arbeitgeberanteil zur Sozialversicherung bemisst sich auf monatlich \eur{229,53}. Für das Gehalt aller übrigen am Projekt beteiligten Mitarbeiter wird ein pauschaler Stundensatz von \eur{30} angenommen.
+
+% 8 h/Tag · 20 Tage/Monat = 160 h/Monat (1)
+% ((884,00 € + 229,53 €)/Monat) / (160 h/Monat) = (1113,53 €/Monat) / (160 h/Monat) = 6,96 €/h (2)
+(TODO)
+
+Es ergibt sich also ein Stundenlohn von \eur{6,96}. Die Durchführungszeit des Projekts beträgt 70 Stunden. Die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner, Lizenzen, etc.} wird hier mit einem pauschalen Stundensatz von \eur{10 €} berücksichtigt. Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung}. Die Kosten belaufen sich auf insgesamt (TODO).
+
+\tabelle{Projektkosten}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
 
 \subsubsection{Amortisationsdauer}
 \label{sec:Amortisationsdauer}
 % Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
 % Wann hat sich das Projekt amortisiert?
-Aufgrund unserer \gqq{Make or Buy}-Entscheidung und da das Projekt nur zu Lernzwecken umgesetzt wird verzichten wir hier auf die Berechnung eines fiktiven Rentabilitätszeitpunktes. Das gelernte wird spätestens zur \ac{IHK}-Prüfung und bei der Anfertigung der Dokumentation des \ac{IHK}-Abschlussprojektes auszahlen.
+
+TODO: Amortisationsdauer berechnen, Berechnung anzeigen, Text verfassen
+
+(TODO)
+
+(TODO)
 
 \subsection{Nutzwertanalyse}
 \label{sec:Nutzwertanalyse}
 % Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
-Durch den Aufbau einer \ac{DMZ} können wir die Zugriffe auf unsere Server, in diesem Fall ein einfacher Webserver, von Außen und Innen reglementieren. So wird über den Routern mit einer konfigurierten Firewall ein sicherer Zugang zu unserem Webserver ermöglicht. Die Aufteilung in unterschiedliche Netzwerke ermöglicht den Administratoren eine einfachere Verwaltung der Berechtigungen für die Mitglieder des Firmennetzes.
+Den größten Nutzen des Projektes stellt die Optimierung des bisherigen Arbeitsprozesses beim Onboarding neuer Kunden dar. Dadurch wird Zeit eingespart und so freie Kapazitäten für andere Tätigkeitsfelder im Onboarding-Prozess geschaffen. Durch die Reduzierung der sich wiederholenden manuellen Tätigkeiten und der dadurch möglichen Fehler erhöht sich die Kundenzufriedenheit, wodurch zusätzlich die Anzahl der Kundenanfragen an die Support-Abteilung reduziert wird.
 
 %\paragraph{Beispiel}
 %Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Architekturdesign}: \nameref{sec:Architekturdesign}.
@@ -50,15 +60,27 @@ Durch den Aufbau einer \ac{DMZ} können wir die Zugriffe auf unsere Server, in d
 \subsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
 % Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
-Der Webserver soll von Außen (über die öffentliche \ac{IP}-Adresse des Outside-Routers) und Innen erreichbar, aber vor unbefugten Zugriffen potentieller Angreifer mit den uns zur Verfügung stehenden Mitteln geschützt werden. Es muss also sichergestellt werden, dass kein unberechtigter Dritter administrativen Zugriff auf die Geräte und deren Konfiguration hat. Dabei ist darauf zu achten, dass die Mitarbeiter mit entsprechender Berechtigung (also zum Beispiel von einem Admin-\ac{PC} aus dem inneren Netz aus) weiterhin Zugriff auf das Internet und den Webserver in der \ac{DMZ} haben.
+Da das Angebotssystem als Webanwendung sowohl von den Mitarbeitern von Doctena Germany in den Abteilungen Verkauf und Onboarding, wie auch von den Kunden zum Abschließen von Verträgen online genutzt wird, wird bei den Qualitätsanforderungen besonderes Augenmerk auf die Abgrenzung der Funktionalität bei den verschiedenen Benutzerrollen gelegt. Die Funktionen zur Account-Erstellung sollen nur Onboarding-Managern zur Verfügung stehen, die Eingabefelder für system-interne Daten nur den Angestellten von Doctena, während die Kunden in der Lage sein sollen, ihre personenbezogenen Daten ggf. ändern zu können.
 
 \subsection{Lastenheft}
 \label{sec:Lastenheft}
 % Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
 % Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
-Einen genaueren Überblick über die festgestellten Anforderungen an die einzelnen Teile der \ac{DMZ} findet sich in unserem ausführlichen Lastenheft im \Anhang{app:Lastenheft}. Im groben gliedern sich die Anforderungen jedoch in folgende generelle Bereiche:
-
-\paragraph*{Die Mitarbeiter} sollen untereinander, mit dem Webserver und dem Internet kommunizieren können, dabei jedoch bestmöglich geschützt werden.
-\paragraph*{Die Administrator} sollen zusätzlich die Möglichkeit haben, die Server und Router aus der Ferne zu warten. Dabei sollte es unerheblich sein, wie viele Clients und Server sich im internen \bzw \ac{DMZ}-Netz befinden.
+% ausführliches Lastenheft im \Anhang{app:Lastenheft}
+Im folgenden werden die wichtigsten Anforderungen an das Projekt aus dem Lastenheft dargestellt.\\[1.5ex]
+\textbf{Anforderungen an die Benutzungsoberfläche:}\\[1.5ex]
+\textbf{LB10:} Die Daten des Übergabeprotokolls sollen im Angebotsformular integriert  werden.\\
+\textbf{LB20:} Es soll ein Button zur Account-Erstellung hinzugefügt werden.\\
+\textbf{LB30:} benötigte zusätzliche Felder zur Account-Erstellung benötigten Daten hinzugefügt werden.\\[1.5ex]
+\textbf{Funktionelle Anforderungen:}\\[1.5ex]
+\textbf{LF10:} Der Button zur Account-Erstellung soll nur von Onboarding-Managern genutzt werden können. Die Formularfelder zur Account-Erstellung und des Übergabeprotokolls sollen nur für Verkauf und Onboarding zur Verfügung stehen.\\
+\textbf{LF20:} Bei einem Vertragsabschluss durch einen Kunden soll die Onboarding-Abteilung eine Benachrichtigung per E-Mail bekommen.\\
+\textbf{LF30:} Es sollen die für einen Account auf Doctena Pro benötigten Objekte erzeugt werden.\\
+\textbf{LF40:} Die Objekte sollen über den AMQP Message-Queue-Bus an Doctena Pro übermittelt werden.\\
+\textbf{LF50:} Wenn mehr als ein Arzt in der Praxis vorhanden ist, soll ein zusätzlicher Admin-User für die Praxis in Doctena Pro angelegt werden.\\[1.5ex]
+\textbf{Sonstige Anforderungen:}\\[1.5ex]
+\textbf{LS10:} Die Funktionalität soll durch Tests der Anforderungen gewährleistet werden, damit das Projekt im Produktivsystem genutzt werden kann.\\
+\textbf{LS20:} Die Benutzer sollen im Umgang mit den neuen Funktionen geschult werden.
 
 \Zwischenstand{Analysephase}{Analyse}
+

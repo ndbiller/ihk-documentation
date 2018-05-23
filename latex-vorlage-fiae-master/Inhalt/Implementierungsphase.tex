@@ -2,88 +2,35 @@
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
 
-Dank der von der Schule zur Verfügung gestellten Hard- und Software im Labor 3.1.01 erfolgt die im folgenden genauer dargestellte Installation der virtuellen Router relativ problemlos. Dies muss jedoch immer wieder durch Testen des bisherigen Fortschritts verifiziert werden. 
+\subsection{Implementierung der Datenstruktur}
+\label{subsec:ImplementierungDatenstruktur}
+% Beschreibung der angelegten Datenbank (z.B. Generierung von SQL aus Modellierungswerkzeug oder händisches Anlegen), XML-Schemas usw..
 
-\subsection{Implementierung der Virtuellen Maschinen}
-\label{subsec:ImplementierungVMs}
-Eine Debian Distribution als virtuelle Maschine ist bereits auf beiden Rechnern vorhanden. Diese wird kopiert und dann mit dem VMWare Player gestartet. Wir überbrücken die physischen Netzwerkadapter der Windows-Hosts auf die virtuellen Adapter der Linux Distribution. So haben die designierten Router über die physischen Interfaces Zugriff auf das Netzwerk. 
+TODO: mongodb, connector, model, listing model
 
-\subsection{Konfiguration der Router}
-\label{subsec:KonfigurationRouter}
+(TODO)
 
-Über dem VMWare Player auf den Windows Hosts verbinden wir uns auf die Router und können diese dann über das Terminal konfigurieren. Die Passwörter, die wir vom Kunden erhalten haben, lassen wir unverändert. Als erstes werden die Hostnamen angepasst. Dazu ersetzt man den alten Namen in den Dateien \texttt{/etc/hostname} und \texttt{/etc/hosts}. Danach sollte die Maschine neu gestartet werden.
-Diese und alle weiteren von uns benötigten Dateien lassen sich über einen vorinstallierten Editor öffnen und bearbeiten, z.\ B.\ mit vi:\\
-\noindent\hspace*{42mm} \texttt{vi /etc/hostname}
+\subsection{Implementierung der Benutzeroberfläche}
+\label{subsec:ImplementierungBenutzeroberfläche}
+% Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (z.B. bei HTML-Oberflächen und Stylesheets).
+% Ggfs. Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
+% Screenshots der Anwendung
 
-\subsubsection{Konfiguration der Interfaces}
-\label{subsubsec:KonfigurationInsideRouterInt}
-Für die Konfiguration der Interfaces halten wir uns an den erstellten \nameref{app:Netzplan}. Um die Interfaces zu konfigurieren editieren wir jeweils deren Konfiguration in der Datei \texttt{/etc/network/interfaces}.
+TODO: Text, Screenshot verlinken, Listing view/partial
 
-\paragraph*{Inside-Router} Für den Inside-Router tragen wir neben den \ac{IP}-Adressen seiner Schnittstellen als Standard-Gateway das Interface des Outside-Routers ein, welsches sich in der \ac{DMZ} befinden soll. (Siehe Anhang InideRouterInt.png)
+(TODO) Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang (TODO)
 
-\paragraph*{Outside-Router} Der Outside-Router erhält zusätlich zu seinen \ac{IP}-Adressen als Gateway die \ac{IP}-Adresse 192.168.200.1 (Standard-Gateway Labornetz). (Siehe Anhang OutsideRouterInt.png)
+\subsection{Implementierung der Geschäftslogik}
+\label{subsec:ImplementierungGeschäftslogik}
+% Beschreibung des Vorgehens bei der Umsetzung/Programmierung der entworfenen Anwendung. 
+% Ggfs. interessante Funktionen/Algorithmen im Detail vorstellen, verwendete Entwurfsmuster zeigen. 
+% Quelltextbeispiele zeigen. 
+% Hinweis: Wie in Kapitel 1: Einleitung zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
+% Beispiel Die Klasse ComparedNaturalModuleInformation findet sich im Anhang A.11: Klasse: ComparedNaturalModuleInformation auf Seite xv.
 
-\subsubsection{Konfiguration der statischen Routern}
-\label{subsubsec:KonfigurationStatischeRouten}
-Wir benötigen zwei statische Routen auf dem Outside-Router, eine für die \ac{DMZ} und eine für das \ac{LAN}. (Siehe Anhang OuutsideRouterInt.png)
+TODO: Text, Listing controller
 
-\subsubsection{Konfiguration von \ac{NAT} und Port-Forwarding}
-\label{subsubsec:KonfigurationNAT}
-Weiterhin konfigurieren wir in der \textit{interfaces} Datei vom Outside-Router \ac{NAT} für die \ac{DMZ} und das \ac{LAN} sowie Port-Forwarding zu unserem Webserver ein. (Siehe Anhang OuutsideRouterInt.png)
-Um jedoch \ac{NAT} und Port-Forwarding auf beiden Routern nutzen zu können, müssen wir dies erst aktivieren. Dies geschieht mit dem Befehl
-\verb+echo 1 > /proc/sys/net/ipv4/ip_forward}+.
-
-Dies ist jedoch nur eine temporäre Lösung und geht nach einem Neustart verloren. Damit der Prozess mit dem Systemstart geladen wird, setzen wir den Wert von  \verb+#net.ipv4.ip_forward+ in der Datei \texttt{/etc/sysctl.conf} auf \verb+1+ und entfernen den Kommentar vom Anfang dieser Zeile.
-
-\subsubsection{Konfiguration des \ac{DNS}-Servers}
-\label{subsubsec:KonfigurationLinuxDNS}
-In der Datei \verb+/etc/resolv.conf+ tragen wir für beide die \ac{IP}-Adresse der von unserem Auftraggeber bereitgestellten \ac{DNS}-Server ein.
-\begin{verbatim}
-nameserver 192.168.200.40
-nameserver 192.168.200.41
-\end{verbatim}
-
-\subsubsection{Konfiguration des Zeitserver}
-\label{subsubsec:KonfigurationLinuxNTP}
-Um einen Zeitserver angeben und nutzen zu können, installieren wir mit \verb+apt-get install ntp+ den \ac{NTP}-Dienst. Danach fügen wir die \ac{IP}-Adresse des bereitgestellten \ac{NTP}-Servers (Standard-Gateway) in die Datei \verb+/etc/ntp.conf+ ein: \verb+server 192.168.200.1 iburst+. (Siehe ntp.conf)
-
-
-\subsection{Implementierung der physischen Hosts}
-\label{subsec:ImplementierungHosts}
-Bevor die Schnittstellen auf die Router angepasst werden, werden noch \evtl benötigte Dateien und Programme (webserver, notepad++, putty, winscp) heruntergeladen. Im Gegensatz zu Router-Konfiguration wird hier fast ausschließlich mit der \ac{GUI} gearbeitet.
-
-\subsubsection{Konfiguration der Interfaces}
-\label{subsubsec:KonfigurationHostInt}
-Für die \ac{IP}-Adressierung halten wir uns ebenfalls an den \nameref{app:Netzplan}.
-
-\paragraph*{Admin-\ac{PC}} Der für die spätere Verwaltung der Router und des Webserver zuständige Host, befindet sich im \ac{LAN} und erhält als Gateway den Inside-Router (Siehe Anhang AdminPCInt.png)
-
-\paragraph*{Webserver} Der Webserver befindet sich in der \ac{DMZ} und erhält als Gateway den Outside-Router. (Siehe Anhang WebserverInt.png)
-
-\subsubsection{Konfiguration des Webservers}
-\label{subsubsec:KonfigurationWebserver}
-Auf dem Host in der \ac{DMZ} wird ein einfacher Webserver, welcher über Port 80 kommuniziert, ausgeführt. Durch das Anpassen der Datei \textit{index.html} wird die Website entsprechend des Kundenwunsches angepasst.
-
-\subsubsection{Konfiguration der Windows-Firewall}
-\label{subsubsec:KonfigurationWinFirewall}
-Um auf den Hosts die Firewall testen und einen \ac{DNS}-Server nutzen zu können muss die Windows-Firewall noch dementsprechend angepasst werden.
-Dazu ist es nötig die Anpassungen für sowohl die ein- als auch ausgehenden Regeln vorzunehmen. 
-Damit wir einen \textit{ping}-Befehl absetzen können, ist es nötig die Regel für die \textit{Datei- und Druckerabfrage} für \ac{ICMP}v4 zu aktivieren.
-Für die Kommunikation zum \ac{DNS}-Server erstellen wir zwei Regeln, je eine für das \ac{TCP}- \bzw das \ac{UDP}-Protokoll. Darin erlauben wir die Kommunikation über die Ports 53 und 853.
-
-\subsubsection{Konfiguration des Zeitservers}
-\label{subsubsec:KonfigurationWinNTP}
-Die \ac{IP}-Adresse des Zeit-Server tragen wir in den "Datum und Uhrzeiteinstellungen" unter der Registerkarte "Internetzeit" ein.
-
-\subsection{Konfiguration der Firewall}
-\label{subsec:KonfigurationFirewall}
-Dass durch den Auftraggeber vorgegebene Script wird entsprechend der in sich befindlichen Vorlage auf beiden Routern angepasst und die \ac{DMZ} somit von beiden Seiten abgeschottet. Entsprechend des übergebenen Parameters (\verb+start+, \verb+stop+) wird das \ac{BASH}-Script gestartet bzw.\ geschlossen.
-% ausführbar durch chmod +x
-% path erweitern in bash.rc, dadurch skript von überall ausführbar
-% firewall bei boot des routers starten durch schreiben in rc.local 
-Wird die Outside-Firewall gestoppt, existiert eine uneingeschränkte Verbindung zwischen dem Labornetz und der \ac{DMZ}. Das interne Netz ist weiterhin durch den Inside-Router geschützt. Ist die Inside-Firewall gestoppt, sind die Netze weiterhin durch den Outside-Router geschützt. Der Inside-Router ist nun jedoch aus dem internen Netz frei erreichbar.
-Des weiteren schreibt die Firewall ihre Einstellungen zum jeweiligen Zustand, wenn Sie gestartet \bzw gestoppt wird in eine Log-File. Diese befindet sich im Ordner \verb+/var/log/firewall/firewallConfig+.
-Genauere Angaben zu den finalen Firewall-Scripten finden sich im \Anhang{app:Firewall-Outside} sowie im \Anhang{app:Firewall-Inside}.
+(TODO)
 
 %\begin{itemize}
 %	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).
@@ -93,7 +40,6 @@ Genauere Angaben zu den finalen Firewall-Scripten finden sich im \Anhang{app:Fir
 
 %\paragraph{Beispiel}
 %Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
-
 
 %\subsection{Implementierung der Geschäftslogik}
 %\label{sec:ImplementierungGeschaeftslogik}
