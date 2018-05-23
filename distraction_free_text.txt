@@ -148,23 +148,45 @@ Die „Make or Buy“-Entscheidung ist in diesem Fall leicht getroffen. Zum eine
 % Welche monetären Vorteile bietet das Projekt (z.B. Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
 % Wann hat sich das Projekt amortisiert?
 
-% TODO: Berechnen, Amortisationstabelle verlinken, Text
+% TODO: Berechnung und Text
 
 ## 3.3 Nutzwertanalyse
 
 % Darstellung des nicht-monetären Nutzens (z.B. Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
 
-
+Den größten Nutzen des Projektes stellt die optimierung des bisherigen Arbeitsprozesses beim Onboarding neuer Kunden dar. Dadurch wird Zeit eingespart und so freie Kapazitäten für andere Tätigkeitsfelder im Onboardingprozess geschaffen. Durch die Reduzierung der sich wiederholenden manuellen Tätigkeiten und der dadurch möglichen Fehler erhöt sich die Kundenzufriedenheit, wodurch zusätzlich die Anzahl der Kundenanfragen an die Supportabteilung reduziert wird.
 
 ## 3.4 Qualitätsanforderungen
 
 % Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
 
+Da das Angebotssystem als Webanwendung sowohl von den Mitarbeitern von Doctena Germany in den Abteilungen Verkauf und Onboarding, wie auch von den Kunden zum Abschließen von Vertägen online genutzt wird, wird bei den Qualitätsanforderungen besonderes Augenmerk auf die Abgrenzung der Funktionalität bei den verschiedenen Benutzerrollen gelegt. Die Funktionen zur Accounterstellung sollen nur Onboarding-Managern zur verfügung stehen, die Eingabefelder für systeminterne Daten nur den Angestellten von Doctena, während die Kunden in der Lage sein sollen, ihre personenbezogenen Daten ggf. ändern zu können.
+
 ## 3.5 Lastenheft
 
 % Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
-
 % Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+
+Im folgenden werden die wichtigsten Anforderungen an das Projekt aus dem Lastenheft dargestellt.
+
+#### Anforderungen an die Benutzungsoberfläche:
+
+- LB10: Die Daten des Übergabeprotokolles sollen im Angebotsformular integriert  werden.
+- LB20: Es soll ein Button zur Accounterstellung hinzugefügt werden. 
+- LB30: Es sollen bei Bedarf zusätzliche Felder für zur Accounterstellung benötigten Daten hinzugefügt werden.
+
+#### Funktionelle Anforderungen:
+
+- LF10: Der Button zur Accounterstellung soll nur von Onboarding-Managern genutzt werden können. Die Formularfelder zur Accounterstellung und des Übergabeprotokolles sollen nur für Verkauf und Onboarding zur Verfügung stehen.
+- LF20: Bei einem Vertragsabschluss durch einen Kunden soll die Onboardingabteilung eine Benachrichtigung per E-Mail bekommen.
+- LF30: Es sollen die für einen Account auf Doctena Pro benötigten Objekte erzeugt werden.
+- LF40: Die Daten zur Accounterstellung sollen über den AMQP Message-Queue-Bus an Doctena Pro übermittelt werden.
+- LF50: Wenn mehr als ein Arzt in der Praxis vorhanden ist, soll ein zusätzlicher Admin-User für die Praxis in Doctena Pro angelegt werden.
+
+Sonstige Anforderungen:
+
+- LS10: Die Funktionalität soll durch Tests der Anforderungen gewährleistet werden, damit das Projekt im Produktivsystem genutzt werden kann.
+- LS20: Die Benutzer sollen im Umgang mit den neuen Funktionen geschult werden.
 
 ## 3.6 Zwischenstand
 
@@ -174,44 +196,73 @@ Die „Make or Buy“-Entscheidung ist in diesem Fall leicht getroffen. Zum eine
 
 % Erklärung
 
+Da das Projekt die Erweiterung des Funktionsumfanges eines bereits bestehenden Systems darstellt, sind viele Entscheidungen zu den verwendeten Technologien bereits im Vorfeld getroffen. Im Folgenden wird deshalb detaillierter beschrieben, wie die geplanten Erweiterungen im existierenden Angebotssystem realisiert werden sollen.
+
 ## 4.1 Zielplattform
 
 % Beschreibung der Kriterien zur Auswahl der Zielplattform (u.a. Programmiersprache, Datenbank, Client/Server, Hardware)
+
+% TODO: browser, html, css, javascript, ruby, rails, mongodb, aws, heroku, cloud
 
 ## 4.2 Architekturdesign
 
 % Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC).
 Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
 
+% TODO: rails, mvc
+
 ## 4.3 Entwurf der Benutzungsoberfläche
 
 % Entscheidung für die gewählte Benutzeroberfläche (z.B. GUI, Webinterface).
-
 % Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
-
 % Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
+
+% TODO: bootstrap, screenshot, neue felder, mockup
 
 ## 4.4 Datenmodell
 
 % Entwurf/Beschreibung der Datenstrukturen (z.B. ERM und/oder Tabellenmodell, XML-Schemas) mit kurzer Beschreibung der wichtigsten (!) verwendeten Entitäten.
 
+% TODO: erm contract, zustandsdiagramm contract
+
 ## 4.5 Geschäftslogik
 
 % Modellierung und Beschreibung der wichtigsten (!) Bereiche der Geschäftslogik (z.B. mit Komponenten-, Klassen-, Sequenz-, Datenflussdiagramm, Programmablaufplan, Struktogramm, Ereignisgesteuerte Prozesskette (EPK)).
-
 % Wie wird die erstellte Anwendung in den Arbeitsfluss des Unternehmens
 integriert?
+
+% TODO: mapping standard > pro, klassendiagramme standard und pro
 
 ## 4.6 Maßnahmen zur Qualitätssicherung
 
 % Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel 3.4: Qualitätsanforderungen) zu sichern (z.B. automatische Tests, Anwendertests)?
-
 % Ggfs. Definition von Testfällen und deren Durchführung (durch
 Programme/Benutzer).
+
+% TODO: minitest, tdd, ci 
 
 ## 4.4 Pflichtenheft
 
 % Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
+
+Im folgenden die wichtigsten vereinbarten Pflichten des Projektes bezüglich der Qualitätssicherung. Diese sollen durch entsprechende Tests abgedeckt sein, um die Funktionalität und Erweiterbarkeit während der aktiven Nutzung im Produktivsystem zu gewährleisten.
+
+#### Pflichten der Benutzungsoberfläche:
+
+- PB10: Die Daten des Übergabeprotokolles müssen für spätere Nutzung persistent und bei Bedarf im Angebotsformular änderbar sein.
+- PB20: Der Button zur Accounterstellung muss den Datenversand über den AMQP Message-Queue-Bus auslösen.
+- PB30: Die Daten zur Accounterstellung müssen persistent und bei Bedarf im Angebotsformular änderbar sein.
+
+#### Funktionelle Pflichten:
+
+- PF10: Die beschränkte Sichtbarkeit des Buttons zur Accounterstellung nur für die Benutzerrolle Onboarding, sowie der Formularfelder zur Accounterstellung und des Übergabeprotokolles für die Rollen Verkauf und Onboarding muss gewährleistet sein.
+- PF20: Der E-Mail-Versand bei einem Vertragsabschluss durch einen Kunden an die Onboardingabteilung muss gewährleistet sein.
+- PF40: Die Daten aus dem Vertrag müssen zur Accounterstellung in das auf dem AMQP Message-Queue-Bus verwendete Datenformat übersetzt werden.
+- PF50: Bei mehr als einem Arzt pro Praxis muss ein zusätzlicher Admin-User zu den Daten im Vertrag hinzugefügt werden.
+
+## 2.3 Abweichungen vom Projektantrag
+
+% TODO: Mit André klären, ob und was (evtl. manuelle tests im zielsystem? objekte aus antrag falsch)
 
 ## 4.5 Zwischenstand
 
