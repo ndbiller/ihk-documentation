@@ -217,7 +217,7 @@ Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Ei
 % Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
 % Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
 
-% TODO: bootstrap, screenshot, neue felder, mockup
+% TODO: für wen, bootstrap, screenshot, neue felder, mockup
 
 ## 4.4 Datenmodell
 
@@ -274,15 +274,15 @@ Im folgenden die wichtigsten vereinbarten Pflichten des Projektes bezüglich der
 
 % Beschreibung der angelegten Datenbank (z.B. Generierung von SQL aus Modellierungswerkzeug oder händisches Anlegen), XML-Schemas usw..
 
+% TODO: mongodb, connector, model, listing model
+
 ## 5.2  Implementierung der Benutzeroberfläche
 
-% Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (z.B. bei HTML-Oberflächen und Stylesheets). 
-
+% Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (z.B. bei HTML-Oberflächen und Stylesheets).
 % Ggfs. Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
-
 % Screenshots der Anwendung
 
-% Beispiel Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang A.8: Screenshots der Anwendung auf Seite x.
+Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang (TODO)
 
 ## 5.3  Implementierung der Geschäftslogik
 
