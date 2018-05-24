@@ -5,17 +5,11 @@
 \subsection{Testing}
 \label{subsec:Testing}
 % Welche Tests (z.B. Unit-, Integrations-, Systemtests) wurden durchgeführt und welche Ergebnisse haben sie geliefert (z.B. Logs von Unit Tests, Testprotokolle der Anwender)? 
-
-TODO: Text, Screenshots Testresultate verlinken
-
-(TODO)
+Es wurden zu den in der Entwurfsphase spezifizierten Testanforderungen umfangreiche Unit-Tests mithilfe des Minitest-Frameworks für Rails geschrieben und das gewünschte Verhalten durch Integration-Tests mittels des Headless-Browsers PhantomJS sichergestellt. Zusätzlich wurden manuelle Tests bezüglich des Sendens und Lesens der Daten auf das Test-Amqp-System durchgeführt. Um in der verwendeten \ac{CI}-Pipeline mit Github und circle.ci im Produktivsystem eingesetzt zu werden, müssen alle Tests grün sein. Ein Screenshot der Testausgabe findet sich im~\Anhang{subsec:Testausgabe}.
 
 \subsection{Abnahme}
 \label{subsec:Abnahme}
 % Wurde die Anwendung offiziell abgenommen?
-
-TODO: Text
-
-(TODO)
+Die Abnahme erfolgte am 23.05.2018 durch den \ac{CTO} von Doctena Germany, André Rauschenbach. Hierzu wurden die Tests über die \ac{CI}-Pipeline auf circle.ci für den Github-Branch des Projektes ausgeführt um sicherzugehen, das sich das Projekt ohne Probleme mit dem Master auf Github zusammenführen und so im Produktivsystem nutzen lässt. Die vereinbarte Funktionalität wurde zusätzlich im Formular vor Ort demonstriert und getestet.
 
 \Zwischenstand{Abnahmephase}{Abnahme}

@@ -1,0 +1,85 @@
+.col-xs-12.customer-data.onboarding.noprint
+  .form-horizontal.container-fluid
+    .panel.panel-info
+      .panel-body
+        .panel.panel-default
+          .panel-heading
+            Übergabeprotokoll
+          .panel-body.form-horizontal
+            .row
+              .col-xs-6
+                .form-group
+                  = f.label :contact_person, 'Ansprechpartner:', class: 'col-xs-4 control-label'
+                  .col-xs-8
+                    = f.text_field :contact_person, class: 'form-control', disabled: (customer_field && @contract.account?), required: false
+                .form-group
+                  = f.label :data_import_wanted, 'Import:', class: 'control-label col-xs-4', title: 'Wenn ein Import gewünscht wird, bitte Praxissoftware unter System mit angeben.'
+                  .col-xs-8
+                    = f.check_box :data_import_wanted, disabled: customer_field, class: 'control-checkbox col-xs-3', title: 'Wenn ein Import gewünscht wird, bitte Praxissoftware unter System mit angeben.'
+                .form-group
+                  = f.label :data_export_date, 'Exporttermin:', class: 'col-xs-4 control-label'
+                  .col-xs-8
+                    = f.select :data_export_date, options_for_select(generate_dates([Time.zone.now, @contract.subscription_start].compact.min, 125).map {|d| [l(d.in_time_zone.to_date, format: "%d. %b %Y | %a"), d.in_time_zone.to_date]}, selected: @contract.data_export_date.try(:to_date) ), { include_blank: !customer_field }
+                .form-group
+                  = f.label :training_date, 'Schulungstermin:', class: 'col-xs-4 control-label'
+                  .col-xs-8
+                    = f.select :training_date, options_for_select(generate_dates([Time.zone.now, @contract.subscription_start].compact.min, 125).map {|d| [l(d.in_time_zone.to_date, format: "%d. %b %Y | %a"), d.in_time_zone.to_date]}, selected: @contract.training_date.try(:to_date) ), { include_blank: !customer_field }
+                .form-group
+                  = f.label :setup_date, 'Feinabstimmung:', class: 'col-xs-4 control-label'
+                  .col-xs-8
+                    = f.select :setup_date, options_for_select(generate_dates([Time.zone.now, @contract.subscription_start].compact.min, 125).map {|d| [l(d.in_time_zone.to_date, format: "%d. %b %Y | %a"), d.in_time_zone.to_date]}, selected: @contract.setup_date.try(:to_date) ), { include_blank: !customer_field }
+              .col-xs-6
+                .form-group
+                  = f.label :contact_person_phone, 'Telefonnummer:', class: 'col-xs-4 control-label'
+                  .col-xs-8
+                    = f.text_field :contact_person_phone, class: 'form-control', disabled: (customer_field && @contract.account?), required: false
+                .form-group
+                  = f.label :data_import_source, 'System:', class: 'control-label col-xs-4'
+                  .col-xs-8
+                    = f.text_field :data_import_source, list: 'data_import_sources', class: 'form-control', disabled: (customer_field && @contract.account?), required: false
+                    %datalist#data_import_sources
+                      %option
+                        Albis
+                      %option
+                        DocComfort
+                      %option
+                        DocConcept
+                      %option
+                        IndaMed
+                      %option
+                        Isynet
+                      %option
+                        MediStar
+                      %option
+                        Turbomed
+                .form-group
+                  = f.label :data_export_date_hour, 'Stunde:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :data_export_date_hour, options_for_select([*0..23], selected: @contract.data_export_date_hour), { include_blank: !customer_field }
+                  = f.label :data_export_date_minute, 'Minute:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :data_export_date_minute, options_for_select([*0..59], selected: @contract.data_export_date_minute), { include_blank: !customer_field }
+                .form-group
+                  = f.label :training_date_hour, 'Stunde:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :training_date_hour, options_for_select([*0..23], selected: @contract.training_date_hour), { include_blank: !customer_field }
+                  = f.label :training_date_minute, 'Minute:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :training_date_minute, options_for_select([*0..59], selected: @contract.training_date_minute), { include_blank: !customer_field }
+                .form-group
+                  = f.label :setup_date_hour, 'Stunde:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :setup_date_hour, options_for_select([*0..23], selected: @contract.setup_date_hour), { include_blank: !customer_field }
+                  = f.label :setup_date_minute, 'Minute:', class: 'col-xs-2 control-label'
+                  .col-xs-4
+                    = f.select :setup_date_minute, options_for_select([*0..59], selected: @contract.setup_date_minute), { include_blank: !customer_field }
+              .col-xs-12
+                .form-group
+                  = f.label :crm_link, 'close.io-Link:', class: 'col-xs-2 control-label'
+                  .col-xs-10
+                    = f.text_field :crm_link, class: 'form-group-single form-control'
+              .col-xs-12
+                .form-group
+                  = f.label :onboarding_notes, 'Anmerkungen:', class: 'col-xs-2 control-label'
+                  .col-xs-10
+                    = f.text_area :onboarding_notes, class: 'form-control form-group-single'

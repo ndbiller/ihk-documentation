@@ -8,10 +8,10 @@ Eine erste Analyse wurde bereits während der Projektdefinition zur Antragstellu
 \label{sec:IstAnalyse}
 % Wie ist die bisherige Situation (\zB bestehende Programme, Wünsche der Mitarbeiter)?
 Unsere Verkäufer erstellen täglich Angebote an Ärzte aus ganz Deutschland. Die Daten, die zur Erstellung dieser Angebote im Formular des Angebotssystems eingegeben werden, können bei Doctena Standard bereits zum automatischen Erstellen eines Accounts für den zukünftigen Benutzer verwendet werden.
-Um einen neuen Account bei Doctena Pro anzulegen werden die gleichen Daten als Grundlage benutzt. Die im Angebotssystem bereits in digitaler Form vorliegenden Daten zu Ärzten und Praxis werden im momentanen Onboarding-Prozess bei Doctena Pro von einem Onboarding-Manager per Copy-und-Paste aus dem Angebot in ein Übergabeprotokoll im von Doctena verwendeten CRM, Close.io, kopiert. Hier kommen einige zusätzliche Informationen, wie Termine für Schulung, Feinabstimmung und Datenimport hinzu. Dann werden in einem weiteren manuellen Schritt die Accounts im Backend von Doctena Pro vom Onboarding-Manager zusammengeklickt und die Daten zu Ärzten und Praxis wieder aus dem Übergabeprotokoll per Copy-und-Paste in die Eingabemaske des Backends transferiert. Dieser Prozess ist repetitiv, nimmt unnötig Zeit in Anspruch, erzeugt in seinem Verlauf redundante Daten und ist somit fehleranfällig.
-Gleichzeitig existiert zum Datenaustausch der verschiedenen internationalen Systeme ein AMQP-Message-Queue-Bus, über den die Verfügbarkeiten der Ärzte mit dem CPP synchronisiert werden.
+Um einen neuen Account bei Doctena Pro anzulegen werden die gleichen Daten als Grundlage benutzt. Die im Angebotssystem bereits in digitaler Form vorliegenden Daten zu Ärzten und Praxis werden im momentanen Onboarding-Prozess bei Doctena Pro von einem Onboarding-Manager per Copy-und-Paste aus dem Angebot in ein Übergabeprotokoll im von Doctena verwendeten \ac{CRM}, Close.io, kopiert. Hier kommen einige zusätzliche Informationen, wie Termine für Schulung, Feinabstimmung und Datenimport hinzu. Dann werden in einem weiteren manuellen Schritt die Accounts im Backend von Doctena Pro vom Onboarding-Manager zusammengeklickt und die Daten zu Ärzten und Praxis wieder aus dem Übergabeprotokoll per Copy-und-Paste in die Eingabemaske des Backends transferiert. Dieser Prozess ist repetitiv, nimmt unnötig Zeit in Anspruch, erzeugt in seinem Verlauf redundante Daten und ist somit fehleranfällig.
+Gleichzeitig existiert zum Datenaustausch der verschiedenen internationalen Systeme ein \ac{AMQP}-Message-Queue-Bus, über den die Verfügbarkeiten der Ärzte mit dem \ac{CPP} synchronisiert werden.
 % Was gilt es zu erstellen/verbessern?
-Um den Onboarding-Prozess zu optimieren, sollen zum einen die Daten des Übergabeprotokolls direkt im Angebotsformular eingegeben werden können, zum anderen sollen die Daten zu Praxis und den Ärzten dazu verwendet werden, die Objekterstellung in Doctena Pro über den Bus auszulösen. Hierzu müssen zusätzliche Felder im Formular der Benutzungsoberfläche und im verwendeten Datenmodell hinzugefügt werden. In der Geschäftslogik im Controller müssen die Daten dann zum auf dem Message-Queue-Bus verwendeten AMQP-Exchange-Type konvertiert werden. Es soll ein Button zum Auslösen des Versandes über den Bus erstellt werden, welcher nur für Onboarding-Manager sichtbar ist. Bei einem Vertragsabschluss für Doctena Pro soll automatisch eine E-Mail an den verantwortlichen Onboarding-Manager versendet werden, damit dieser die Daten des Angebots im Formular überprüfen und ggf. korrigieren kann und dann die automatische Account-Erstellung auslösen kann.
+Um den Onboarding-Prozess zu optimieren, sollen zum einen die Daten des Übergabeprotokolls direkt im Angebotsformular eingegeben werden können, zum anderen sollen die Daten zu Praxis und den Ärzten dazu verwendet werden, die Objekterstellung in Doctena Pro über den Bus auszulösen. Hierzu müssen zusätzliche Felder im Formular der Benutzungsoberfläche und im verwendeten Datenmodell hinzugefügt werden. In der Geschäftslogik im Controller müssen die Daten dann zum auf dem Message-Queue-Bus verwendeten \ac{AMQP}-Exchange-Type konvertiert werden. Es soll ein Button zum Auslösen des Versandes über den Bus erstellt werden, welcher nur für Onboarding-Manager sichtbar ist. Bei einem Vertragsabschluss für Doctena Pro soll automatisch eine E-Mail an den verantwortlichen Onboarding-Manager versendet werden, damit dieser die Daten des Angebots im Formular überprüfen und ggf. korrigieren kann und dann die automatische Account-Erstellung auslösen kann.
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
@@ -25,16 +25,16 @@ Die \gqq{Make or Buy}-Entscheidung ist in diesem Fall leicht getroffen. Zum eine
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
 % Welche Kosten fallen bei der Umsetzung des Projekts im Detail an (\zB Entwicklung, Einführung/Schulung, Wartung)?
-
-TODO: Berechnung anzeigen, Kostentabelle erweitern, Endwert eintragen
-
 Die realen Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen. Gerechnet wird hier bei den Personalkosten lediglich mit dem fiktiven Gehalt eines Auszubildendem im dritten Lehrjahr von ungefähr \eur{884} Brutto bei 20 Arbeitstagen im Monat. Der Arbeitgeberanteil zur Sozialversicherung bemisst sich auf monatlich \eur{229,53}. Für das Gehalt aller übrigen am Projekt beteiligten Mitarbeiter wird ein pauschaler Stundensatz von \eur{30} angenommen.
 
-% 8 h/Tag · 20 Tage/Monat = 160 h/Monat (1)
-% ((884,00 € + 229,53 €)/Monat) / (160 h/Monat) = (1113,53 €/Monat) / (160 h/Monat) = 6,96 €/h (2)
-(TODO)
+\begin{eqnarray}
+8 \mbox{ h/Tag}  \cdot 20 \mbox{ Tage/Monat}  = 160  \mbox{ h/Monat}
+\end{eqnarray}
+\begin{eqnarray}
+\frac{\eur{884,00} + \eur{229,53}\mbox{/Monat}}{160\mbox{ h/Monat}} = \frac{\eur{1113,53}\mbox{/Monat}}{160\mbox{h/Monat}} = \eur{6,96}\mbox{/h}
+\end{eqnarray}
 
-Es ergibt sich also ein Stundenlohn von \eur{6,96}. Die Durchführungszeit des Projekts beträgt 70 Stunden. Die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner, Lizenzen, etc.} wird hier mit einem pauschalen Stundensatz von \eur{10 €} berücksichtigt. Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung}. Die Kosten belaufen sich auf insgesamt (TODO).
+Es ergibt sich ein Stundenlohn von \eur{6,96}. Die Durchführungszeit des Projekts beträgt 70 Stunden. Die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner, Lizenzen, etc.} wird hier mit einem pauschalen Stundensatz von \eur{10} berücksichtigt. Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung}. Die Kosten belaufen sich auf insgesamt \eur{1397,20}.
 
 \tabelle{Projektkosten}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
 
@@ -43,11 +43,8 @@ Es ergibt sich also ein Stundenlohn von \eur{6,96}. Die Durchführungszeit des P
 % Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
 % Wann hat sich das Projekt amortisiert?
 
-TODO: Amortisationsdauer berechnen, Berechnung anzeigen, Text verfassen
+Mit dem pauschale Stundensatz von \eur{30} und den kalkulierten Kosten aus der vorherigen Rechnung ergibt sich für 3 Mitarbeiter im Onboarding, die pro Person bei jeweils nur einem angelegten Account pro Tag 30 Minuten einsparen, bei 20 Arbeitstagen pro Monat eine Amortisationsddauer von ca. 1,53 Monaten. Selbst wenn sich die Kosten und Gewinne durch Nachbesserungen oder anderweitigen Arbeitsaufwand im Onboarding verändern sollten, amortisiert sich das Projekt doch relativ schnell.
 
-(TODO)
-
-(TODO)
 
 \subsection{Nutzwertanalyse}
 \label{sec:Nutzwertanalyse}
@@ -76,7 +73,7 @@ Im folgenden werden die wichtigsten Anforderungen an das Projekt aus dem Lastenh
 \textbf{LF10:} Der Button zur Account-Erstellung soll nur von Onboarding-Managern genutzt werden können. Die Formularfelder zur Account-Erstellung und des Übergabeprotokolls sollen nur für Verkauf und Onboarding zur Verfügung stehen.\\
 \textbf{LF20:} Bei einem Vertragsabschluss durch einen Kunden soll die Onboarding-Abteilung eine Benachrichtigung per E-Mail bekommen.\\
 \textbf{LF30:} Es sollen die für einen Account auf Doctena Pro benötigten Objekte erzeugt werden.\\
-\textbf{LF40:} Die Objekte sollen über den AMQP Message-Queue-Bus an Doctena Pro übermittelt werden.\\
+\textbf{LF40:} Die Objekte sollen über den \ac{AMQP} Message-Queue-Bus an Doctena Pro übermittelt werden.\\
 \textbf{LF50:} Wenn mehr als ein Arzt in der Praxis vorhanden ist, soll ein zusätzlicher Admin-User für die Praxis in Doctena Pro angelegt werden.\\[1.5ex]
 \textbf{Sonstige Anforderungen:}\\[1.5ex]
 \textbf{LS10:} Die Funktionalität soll durch Tests der Anforderungen gewährleistet werden, damit das Projekt im Produktivsystem genutzt werden kann.\\

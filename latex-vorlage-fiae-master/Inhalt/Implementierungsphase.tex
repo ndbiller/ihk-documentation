@@ -6,9 +6,7 @@
 \label{subsec:ImplementierungDatenstruktur}
 % Beschreibung der angelegten Datenbank (z.B. Generierung von SQL aus Modellierungswerkzeug oder händisches Anlegen), XML-Schemas usw..
 
-TODO: mongodb, connector, model, listing model
-
-(TODO)
+Das Hinzufügen der benötigten Datenfelder auf dem Model in Rails wurde über den Data-Connector zur nicht-relationalen Datenbank MongoDB umgesetzt und die erstellten Objekte wurden über den Vertrag persistiert.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{subsec:ImplementierungBenutzeroberfläche}
@@ -16,9 +14,7 @@ TODO: mongodb, connector, model, listing model
 % Ggfs. Beschreibung des Corporate Designs und dessen Umsetzung in der Anwendung.
 % Screenshots der Anwendung
 
-TODO: Text, Screenshot verlinken, Listing view/partial
-
-(TODO) Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im Anhang (TODO)
+Die Anzeige der Felddaten im Übergabeprotokoll in der Benutzungsoberfläche wurde wie geplant über ein \ac{HAML}-Partial realisiert. Auch die Sichtbarkeit für Benutzerrollen konnte mit einfachen Abfragen auf den entsprechend zu erzeugenden Elementen realisiert werden. Ein Codebeispiel des Partials zur Erzeugung der \ac{HTML}-Seite findet sich im~\Anhang{app:HAML}. Ein Screenshot der fertigen Anwendung befinden sich unter anderem im~\Anhang{subsec:Wiki}.
 
 \subsection{Implementierung der Geschäftslogik}
 \label{subsec:ImplementierungGeschäftslogik}
@@ -28,9 +24,7 @@ TODO: Text, Screenshot verlinken, Listing view/partial
 % Hinweis: Wie in Kapitel 1: Einleitung zitiert, wird nicht ein lauffähiges Programm bewertet, sondern die Projektdurchführung. Dennoch würde ich immer Quelltextausschnitte zeigen, da sonst Zweifel an der tatsächlichen Leistung des Prüflings aufkommen können.
 % Beispiel Die Klasse ComparedNaturalModuleInformation findet sich im Anhang A.11: Klasse: ComparedNaturalModuleInformation auf Seite xv.
 
-TODO: Text, Listing controller
-
-(TODO)
+Ein Codebeispiel der Umsetztung der Geschäftslogik mit den objekterzeugenden Methoden aus dem Controller ist im~\Anhang{app:Controller} zu finden. Durch die Anwendung der Prinzipien des \ac{TDD}s wurden Tests bereits während der Implementierungsphase geschrieben. Diese wurden, wenn möglich, bereits vor Umsetzung einer Anforderung erstellt, damit neben deren Funktionalität auch sichergestellt werden konnte, dass die Arbeit am zu bearbeitenden Feature auch beendet war, wenn die Tests von rot auf grün wechselten.
 
 %\begin{itemize}
 %	\item Beschreibung der Implementierung der Benutzeroberfläche, falls dies separat zur Implementierung der Geschäftslogik erfolgt (\zB bei \acs{HTML}-Oberflächen und Stylesheets).

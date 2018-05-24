@@ -5,7 +5,22 @@
 % gesetzt in der pagecommand-Option von \includepdf, damit die erste PDF-Seite die richtigen Header bekommt
 \includepdf[scale=0.8,clip,trim=0cm 0cm 0cm 0cm,offset=0 -2cm,pages={1},pagecommand={\section{Anhang}\subsection{Projekt-Ressourcen}\label{app:Ressourcen}}]{Projektressourcen.pdf}
 \clearpage
-
+\input{Anhang/AnhangZeitplan.tex}
+\clearpage
+\input{Anhang/AnhangMockup.tex}
+\clearpage
+\subsubsection{\ac{HAML}-Partial}
+\label{app:HAML}
+\lstinputlisting[language=Ruby]{Listings/onboarding.html.haml}
+\clearpage
+\subsubsection{Contracts-Controller}
+\label{app:Controller}
+\lstinputlisting[language=Ruby]{Listings/contracts_controller_excerpt.rb}
+\clearpage
+\input{Anhang/AnhangTestausgabe.tex}
+\clearpage
+\input{Anhang/AnhangWiki.tex}
+\clearpage
 % \input{Anhang/AnhangLastenheft.tex}
 % \input{Anhang/AnhangPflichtenheft.tex}
 % \clearpage

@@ -8,18 +8,14 @@ Da das Projekt die Erweiterung des Funktionsumfanges eines bereits bestehenden S
 \label{sec:Zielplattform}
 % Beschreibung der Kriterien zur Auswahl der Zielplattform (u.a. Programmiersprache, Datenbank, Client/Server, Hardware)
 
-TODO: browser, html, css, javascript, ruby, rails, mongodb, aws, heroku, cloud
-
-(TODO)
+Die Angebotsformular ist als Webanwendung mit den drei gängigsten Webbrowsern unabhängig vom verwendeten Betriebssystem ausführbar. Diese wurde mit Ruby und Rails geschrieben, bindet über Bibliotheken JQuery und Bootstrap ein und wird über Heroku und \ac{AWS} zur Verfügung gestellt. Als Datenbanksystem für das Projekt ist die nicht-relationale Datenbank MongoDB von MongoLab angebunden. Zum Datenversand aus dem Angebotsystem zu Doctena Pro wird RabbitMQ verwendet.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
 % Netzpläne \Anhang{app:Netzplan}
 % Beschreibung und Begründung der gewählten Anwendungsarchitektur (z.B. MVC). Ggfs. Bewertung und Auswahl von verwendeten Frameworks sowie ggfs. eine kurze Einführung in die Funktionsweise des verwendeten Frameworks.
 
-TODO: rails, mvc
-
-(TODO)
+Das Angebotsystem besteht aus einer im Framework Rails üblichen \ac{MVC}-Struktur. Somit erfolgt die interne Kommunikation zwischen der in der Datenhaltungsschicht angebundenen nicht-relationalen Datenbank MongoDB und den Modell-Klassen über einen in Rails als Bibliothek eingebundenen Data-Connector, den MongoDB Driver. Die browserbasierte Eingabemaske des Views in der Schicht der Benutzungsoberfläche interagiert intern über die im Controller vorhandene Geschäftslogik mit den üblichen \ac{CRUD}-Operationen und Formular-Parametern über die in den Routes eingestellten Pfade mit dem Modell und so der Datenschicht.
 
 \subsection{Entwurf der Benutzungsoberfläche}
 \label{sec:Benutzungsoberfläche}
@@ -27,35 +23,31 @@ TODO: rails, mvc
 % Beschreibung des visuellen Entwurfs der konkreten Oberfläche (z.B. Mockups, Menüführung).
 % Ggfs. Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
 
-TODO: für wen, bootstrap, screenshot, neue felder, mockup
-
-(TODO)
+Als Webanwendung, die auch von Kunden zum Vertragsabschluss genutzt wird, ist das Angebotsformular bereits durch die Verwendung von Bootstrap selbst für die mobile Benutzung optimiert. Aus repräsentativen Gründen muss das Formulardesign klar und übersichtlich sein und allen Anforderungen an die Corporate Identity gerecht werden. Da täglich von technisch nicht geschultem Personal damit gearbeitet wird, muss jedes neue Feld zu Accounterstellung und Übergabeprotokoll möglichst eindeutig beschriftet sein. Diese neuen Felder können in Rails mittels der vereinfachten Auszeichnungssprache \ac{HAML} geschrieben werden, welche daraus den gewünschten \ac{HTML}-Code für die Seite erzeugt. Ein Screenshot des Mockups für die neuen Felder in der Eingabemaske findet sich im~\Anhang{subsec:Mockup}.
 
 \subsection{Datenmodell}
 \label{sec:Datenmodell}
 % Entwurf/Beschreibung der Datenstrukturen (z.B. ERM und/oder Tabellenmodell, XML-Schemas) mit kurzer Beschreibung der wichtigsten (!) verwendeten Entitäten.
 
-TODO: erm contract, zustandsdiagramm contract
+Das Datenmodell lässt sich dank einem einfachen Mapping der Datenstruktur bei Rails und MongoDB über die entsprechende Modell-Klasse verwirklichen. Durch die Benutzung eines Connectors (MongoDB Driver) können die neuen Datenfelder einfach auf dem Modell Vertrag hinzugefügt werden. Zum persistieren der Objekte im Vertrag werden diese beim Speichern des Vertrages über diesen verknüpft. Beim Versand über den Bus werden in Doctena Standard die folgenden Objekte benötigt:
 
-(TODO)
+\textbf{Account, User, Practice, Doctor, Calendar}
 
 \subsection{Geschäftslogik}
 \label{sec:Geschäftslogik}
 % Modellierung und Beschreibung der wichtigsten (!) Bereiche der Geschäftslogik (z.B. mit Komponenten-, Klassen-, Sequenz-, Datenflussdiagramm, Programmablaufplan, Struktogramm, Ereignisgesteuerte Prozesskette (EPK)).
 % Wie wird die erstellte Anwendung in den Arbeitsfluss des Unternehmens integriert?
 
-TODO: mapping standard > pro, klassendiagramme standard und pro
+Bei der Umsetzung der Geschäftslogik muss im Controller eine neue Methode erstellt werden, über welche die Accounterstellung geroutet wird. Hier ist beim Erstellen der Objekte darauf zu achten, ob sich nach dem Speichern mehr oder weniger Behandler im Vertragsformular finden. Je nach Fall ist dann ggf. ein Admin-User zu erzeugen und zu speichern oder muss wieder entfernt werden. Die Objekte müssen für den Versand von Doctena Standard zum Zielsystem in das auf dem \ac{AMQP}-Bus benutzte Format \ac{JSON} übersetzt werden. Auf Doctena Pro werden aus den Messages der Queues die neuen Objekte erzeugt und so werden die Objekte von Doctena Standard auf die von Doctena Pro gemappt. Die entsprechenden Objekte im Zielsystem sind:
 
-(TODO)
+\textbf{Secretary, Practice, Agenda, Doctor}
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
 % Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen}) zu sichern (\zB automatische Tests, Anwendertests)?
 % \Ggfs Definition von Testfällen und deren Durchführung (durch Programme/Benutzer).
 
-TODO: minitest, tdd, ci
-
-(TODO)
+Damit das Projekt überhaupt im Produktivsystem genutzt werden kann, müssen für die wichtigsten Anforderungen entsprechende Tests mit dem in Rails eingebundenen Test-Framework Minitest geschrieben werden. Diese sorgen bei Änderungen am Quellcode dafür, dass man im Fall eines unbeabsichtigten Fehlers nicht dringend benötigte Funktionalitäten unbrauchbar macht. Die Verwendete \ac{CI}-Pipeline über das Repository auf Github und circle.ci sorgt bei einem grünen Master nach den Tests für ein Deployment auf dem Produktivsystem. Deshalb müssen die Prinzipien des \ac{TDD} in unserem Entwicklungsprozess beachtet werden.
 
 \subsection{Pflichtenheft}
 \label{sec:Pflichtenheft}
@@ -64,13 +56,13 @@ TODO: minitest, tdd, ci
 % Pflichtenheft: \Anhang{app:Pflichtenheft}
 Im folgenden die wichtigsten vereinbarten Pflichten des Projektes bezüglich Qualitätssicherung, um die Funktionalität und Erweiterbarkeit während der aktiven Nutzung im Produktivsystem gewährleisten zu können.\\[1.5ex]
 \textbf{Pflichten der Benutzungsoberfläche:}\\[1.5ex]
-\textbf{PB10:} Die Daten des Übergabeprotokolls müssen persistiert, geladen und erneut persistiert werden.\\
-\textbf{PB20:} Der Button zur Account-Erstellung muss den Datenversand über den AMQP Message-Queue-Bus auslösen.\\
-\textbf{PB30:} Die Daten zur Account-Erstellung müssen persistiert, geladen und erneut persistiert werden.\\[1.5ex]
+\textbf{PB10:} Die Daten des Übergabeprotokolls müssen persistiert und ggf. wieder geladen und erneut persistiert werden.\\
+\textbf{PB20:} Der Button zur Account-Erstellung muss den Datenversand über den \ac{AMQP} Message-Queue-Bus auslösen.\\
+\textbf{PB30:} Die Daten zur Account-Erstellung müssen persistiert und ggf. wieder geladen und erneut persistiert werden.\\[1.5ex]
 \textbf{Funktionelle Pflichten:}\\[1.5ex]
 \textbf{PF10:} Für Benutzer mit der Rolle Manager muss der Button zur Account-Erstellung sowie die Formularfelder zur Account-Erstellung und das Übergabeprotokoll sichtbar sein. Für Benutzer mit der Rolle Verkäufer müssen die Formularfelder zur Account-Erstellung und das Übergabeprotokoll sichtbar sein. Für einen Benutzer ohne Rolle dürfen weder der Button zur Account-Erstellung noch die Formularfelder zur Account-Erstellung oder das Übergabeprotokoll vorhanden sein.\\
 \textbf{PF20:} Bei einem Vertragsabschluss muss eine E-Mail an die Adresse onboarding@doctena.com gesendet werden.\\
-\textbf{PF40:} Die Daten aus dem Vertrag müssen zur Account-Erstellung in das auf dem AMQP Message-Queue-Bus verwendete Datenformat übersetzt werden.\\
+\textbf{PF40:} Die Daten aus dem Vertrag müssen zur Account-Erstellung in das auf dem \ac{AMQP} Message-Queue-Bus verwendete Datenformat übersetzt werden.\\
 \textbf{PF50:} Bei mehr als einem Arzt pro Praxis muss ein zusätzlicher User als Admin-User ohne Arzt und Kalender erstellt und dieses zusätzliche Objekt über den Bus gesendet werden.\\
 
 \Zwischenstand{Entwurfsphase}{Entwurf}
